@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "./../style/Login.css";
 const Login = () => {
+  const [phonenumber, setPhonenumber] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const handleForm = () => {
+  const handleRegisterForm = () => {
     //http requset
     // if succesfull go next page
     // else show error message
@@ -12,7 +13,15 @@ const Login = () => {
   return (
     <div className="container">
       <form>
-        <span className="title">Login</span>
+        <span className="title">Register</span>
+        <input
+          type="text"
+          placeholder=" phonenumber"
+          value={phonenumber}
+          onChange={(event) => {
+            setPhonenumber(event.target.value);
+          }}
+        />
         <input
           type="text"
           placeholder=" username"
@@ -29,8 +38,13 @@ const Login = () => {
             setPassword(event.target.value);
           }}
         />
-        <input type="submit" value="Login" onClick={handleForm} id="submit" />
-        <input type="submit" value="Register" id="link" />
+        <input
+          type="submit"
+          value="Register"
+          onClick={handleRegisterForm}
+          id="submit"
+        />
+        <input type="submit" value="Login" id="link" />
       </form>
     </div>
   );
