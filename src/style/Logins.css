@@ -8,6 +8,7 @@
   justify-content: center;
   font-family: "Segoe UI";
 }
+
 form {
   width: 440px;
   height: 640px;
@@ -17,6 +18,10 @@ form {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+}
+.startChat {
+  width: 440px;
+  height: 480px;
 }
 input[type="text"],
 input[type="password"] {
@@ -51,5 +56,5 @@ input:focus {
 span {
   font-size: 36px;
   color: #949494;
-  font-family: 'Segoepr';
+  font-family: "Segoepr";
 }

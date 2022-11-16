@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./../style/Login.css";
-const Login = () => {
+import "./../style/Logins.css";
+const Register = () => {
   const [phonenumber, setPhonenumber] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -49,4 +49,4 @@ const Login = () => {
     </div>
   );
 };
-export default Login;
+export default Register;

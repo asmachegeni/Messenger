@@ -1,8 +1,12 @@
+import StartChat from "./component/StartChat";
+import Login from "./component/Login";
 import Register from "./component/Register";
 function App() {
   return (
     // <div className="App">
-      <Register />
+      <StartChat />
+      // <Login/>
+      // <Register/>
     // </div>
   );
 }
