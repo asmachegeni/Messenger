@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import "./../style/Logins.css";
+import ErrorMessage from "./ErrorMessage";
 const Register = () => {
   const [phonenumber, setPhonenumber] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isShow, setIsShow] = useState(true);
   const handleRegisterForm = () => {
     //http requset
     // if succesfull go next page
@@ -12,6 +14,7 @@ const Register = () => {
   };
   return (
     <div className="container">
+      {isShow && <ErrorMessage text="invalid user!!!" />}
       <form>
         <span className="title">Register</span>
         <input

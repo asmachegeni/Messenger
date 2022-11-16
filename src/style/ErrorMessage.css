@@ -1,0 +1,32 @@
+.Errorcontainer {
+  width: 300px;
+  height: 96px;
+  background-color: #071f75;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 10;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+span {
+  font-size: 16px;
+  font-family: "Segoe UI";
+  color: #ffffff;
+}
+.icon {
+  color: #ffffff;
+  font-size: 20px;
+  padding-bottom: 32px;
+}
+@keyframes error {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
+}
