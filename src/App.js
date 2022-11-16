@@ -4,12 +4,14 @@ import Register from "./component/Register";
 import ErrorMessage from "./component/ErrorMessage";
 import ChatItem from "./component/ChatItem";
 import ChatList from "./component/ChatList";
+import Title from "./component/Title";
 function App() {
   return (
     // <div className="App">
     // <StartChat />
     // <ChatItem/>
-    <ChatList/>
+    // <ChatList/>
+    <Title/>
     // <Login/>
     // <Register/>
     // </div>

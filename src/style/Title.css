@@ -1,0 +1,32 @@
+.titleContainer {
+  width: 768px;
+  height: 96px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-left: 16px;
+}
+.profile {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  margin-right: 32px;
+}
+.name {
+  color: #071f75;
+  font-size: 20px;
+  font-weight: bold;
+}
+.backIcon {
+  font-size: 24px;
+  color: #071f75;
+  padding-right: 16px;
+}
