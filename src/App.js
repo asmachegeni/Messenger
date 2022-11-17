@@ -4,6 +4,7 @@ import Register from "./component/Register";
 import ErrorMessage from "./component/ErrorMessage";
 import ChatItem from "./component/ChatItem";
 import ChatList from "./component/ChatList";
+import Message from "./component/Message";
 import Title from "./component/Title";
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
     // <StartChat />
     // <ChatItem/>
     // <ChatList/>
-    <Title/>
+    // <Title/>
+    <Message/>
     // <Login/>
     // <Register/>
     // </div>

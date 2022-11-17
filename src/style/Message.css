@@ -1,0 +1,39 @@
+.messageContainerUser {
+  background-color: #ffffff;
+  border-radius: 20px 20px 0 20px;
+  margin: 24px;
+  max-width: 200px;
+  min-width: 80px;
+}
+.textUser {
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  word-wrap: break-word;
+  color: #071f75;
+}
+.dateUser {
+  padding: 12px;
+  font-size: 12px;
+  color: #8c9edb;
+}
+.messageContainerClient {
+  background-color: #071f75;
+  border-radius: 0 20px 20px 20px;
+  margin: 24px;
+  max-width: 200px;
+  min-width: 80px;
+ 
+}
+.textClient{
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  word-wrap: break-word;
+  color: #ffffff;
+}
+.dateClient {
+  padding: 12px;
+  font-size: 12px;
+  color: #8c9edb;
+}
