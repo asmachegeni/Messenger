@@ -4,6 +4,8 @@
   margin: 24px;
   max-width: 200px;
   min-width: 80px;
+  position: relative;
+   left: 512px;
 }
 .textUser {
   padding-left: 8px;
@@ -23,9 +25,8 @@
   margin: 24px;
   max-width: 200px;
   min-width: 80px;
- 
 }
-.textClient{
+.textClient {
   padding-left: 8px;
   padding-right: 8px;
   padding-top: 4px;
