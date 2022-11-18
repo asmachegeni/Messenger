@@ -7,6 +7,7 @@ import ChatList from "./component/ChatList";
 import Message from "./component/Message";
 import Title from "./component/Title";
 import Conversation from "./component/Conversation";
+import ChatRoom from "./component/ChatRoom";
 function App() {
   return (
     // <div className="App">
@@ -15,7 +16,8 @@ function App() {
     // <ChatList/>
     // <Title/>
     // <Message/>
-    <Conversation/>
+    // <Conversation/>
+    <ChatRoom />
     // <Login/>
     // <Register/>
     // </div>

@@ -1,26 +1,21 @@
 import React, { useState } from "react";
 import Title from "./Title";
 import Message from "./Message";
-import './../style/Conversation.css'
-const Conversation = () => {
-  const [messages, setMessages] = useState([
-    { text: "djfjrufv", date: "20222/10/24 23:25", User: false },
-    { text: "djfjrufv", date: "20222/10/24 23:25", User: false },
-    { text: "djfjrufv", date: "20222/10/24 23:25", User: true },
-    { text: "djfjrufv", date: "20222/10/24 23:25", User: true },
-    // { text: "djfjrufv", date: "20222/10/24 23:25", User: false },
-    // { text: "djfjrufv", date: "20222/10/24 23:25", User: false },
-    // { text: "djfjrufv", date: "20222/10/24 23:25", User: true },
-    // { text: "djfjrufv", date: "20222/10/24 23:25", User: false },
-  ]);
+import "./../style/Conversation.css";
+const Conversation = ({ conversationInfo, userPhone }) => {
   return (
     <div className="ConversationContainer">
-      <Title />
+      <Title name={conversationInfo[0].name}/>
       <div className="contentConversation">
-      {messages.map((message) => (
-        <Message text={message.text} date={message.date} User={message.User} />
-      ))}
-       <textarea placeholder="Write a message..." className="textbox"/>
+        {conversationInfo.map((message) => (
+          <Message
+            text={message.text}
+            date={message.date}
+            senderPhone={message.senderPhone}
+            userPhone={userPhone}
+          />
+        ))}
+        <textarea placeholder="Write a message..." className="textbox" />
       </div>
     </div>
   );

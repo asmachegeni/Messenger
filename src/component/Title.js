@@ -2,7 +2,7 @@ import React from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import image from "./../assets/images.png";
 import "./../style/Title.css";
-const Title = ({ name = "asma" }) => {
+const Title = ({ name = "aa" }) => {
   return (
     <div className="titleContainer">
       <div className="content">
