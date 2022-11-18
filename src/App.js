@@ -8,6 +8,7 @@ import Message from "./component/Message";
 import Title from "./component/Title";
 import Conversation from "./component/Conversation";
 import ChatRoom from "./component/ChatRoom";
+import Profile from "./component/Profile";
 function App() {
   return (
     // <div className="App">
@@ -18,6 +19,7 @@ function App() {
     // <Message/>
     // <Conversation/>
     <ChatRoom />
+    // <Profile />
     // <Login/>
     // <Register/>
     // </div>

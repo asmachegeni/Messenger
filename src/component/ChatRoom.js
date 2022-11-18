@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import ChatList from "./ChatList";
 import Conversation from "./Conversation";
-import './../style/ChatRoom.css'
+import Profile from "./Profile";
+import "./../style/ChatRoom.css";
 const ChatRoom = () => {
   const [phone, setPhone] = useState("09034179326");
   const [username, setUsername] = useState("asma");
@@ -20,7 +21,10 @@ const ChatRoom = () => {
   const [nowConversation, setNewConversation] = useState({});
   return (
     <div className="ChatRoom">
-      <ChatList contactInfo={contacts} />
+      <div className="Chats">
+        <Profile />
+        <ChatList contactInfo={contacts} />
+      </div>
       <Conversation conversationInfo={contacts} userPhone={phone} />
     </div>
   );

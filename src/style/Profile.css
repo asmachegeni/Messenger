@@ -1,0 +1,51 @@
+.ProflieContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  background-color: #071f75;
+  width: 360px;
+  height: 140x;
+  padding-bottom: 12px;
+  padding-left: 8px;
+}
+.ProfiletTilte{
+    display: flex;
+    justify-content: center;
+}
+.TitleText {
+  font-size: 24px;
+  color: #ffffff;
+  font-family: "Segoepr";
+}
+.ProfileContent {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  align-items: center;
+}
+.ProfileImage {
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+}
+.ProfileInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.name {
+  font-size: 16px;
+  font-family: "Segoe UI";
+  color: #ffffff;
+}
+.phone {
+  font-size: 16px;
+  font-family: "Segoe UI";
+  color: #8c9edb;
+}
+.iconPlus{
+    font-size: 40px;
+  font-family: "Segoe UI";
+  color: #ffffff;
+}
