@@ -7,6 +7,8 @@
   height: 140x;
   padding-bottom: 12px;
   padding-left: 8px;
+  position: fixed;
+  z-index: 10;
 }
 .ProfiletTilte{
     display: flex;

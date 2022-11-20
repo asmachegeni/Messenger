@@ -8,9 +8,9 @@ const ChatRoom = () => {
   const [username, setUsername] = useState("asma");
   const [contacts, setContascts] = useState([
     {
-      name: "ali",
+      name: "user1",
       lastMessage: "thank:)",
-      phone: "",
+      phone: "09034179326",
       messages: [
         { text: "what??", date: "2022", senderPhone: "09034179326" },
         { text: "hi", date: "2022", senderPhone: "09034179326" },
@@ -19,13 +19,29 @@ const ChatRoom = () => {
     },
   ]);
   const [nowConversation, setNewConversation] = useState({});
+  const AddMessage = (conversation, message) => {
+    let conversationTemp = conversation[0].messages.slice();
+    conversationTemp.push({
+      text: message,
+      date: "2022",
+      senderPhone: "09034179322",
+    });
+    let con = conversation.slice();
+    con[0].messages = conversationTemp;
+    setContascts(con);
+    console.log(contacts)
+  };
   return (
     <div className="ChatRoom">
       <div className="Chats">
         <Profile />
         <ChatList contactInfo={contacts} />
       </div>
-      <Conversation conversationInfo={contacts} userPhone={phone} />
+      <Conversation
+        conversationInfo={contacts}
+        userPhone={phone}
+        AddMessage={AddMessage}
+      />
     </div>
   );
 };

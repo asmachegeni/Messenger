@@ -1,0 +1,8 @@
+.ChatListContainer {
+  position: relative;
+  top: 125px;
+  width: 360px;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}

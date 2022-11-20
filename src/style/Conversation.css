@@ -1,25 +1,47 @@
 .ConversationContainer {
-  height: 730px;
+  /* height: max-content; */
+  min-height: 700px;
+  max-height: max-content;
   width: 768px;
   background-color: #dfe0e3;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
+.textbox {
+  border: none;
+  width: 712px;
+  height: 48px;
+  background-color: #f5f6fa;
+  font-family: "Segoe UI";
+  font-size: 16px;
+  border: none;
+  overflow: hidden;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  resize: none;
+}
+.cont {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  z-index: 10;
+  bottom: 0;
+}
+.btn {
+  font-size: 32px;
+  color: #071f75;
+  width: 36px;
+  height: 52px;
+  background-color: #f5f6fa;
+  padding-right: 16px;
+}
 .contentConversation {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-}
-.textbox {
-  border: none;
-  width: 766px;
-  min-height: 48px;
-  background-color: #f5f6fa;
-  font-family: "Segoe UI";
-  font-size: 16px;
-  overflow: hidden;
-}
-.textbox:focus {
-  outline: none;
+  height: max-content;
 }
