@@ -1,48 +1,81 @@
 .container {
-  background-color: #dfe0e3;
+  background-color: #1d334d;
   width: 100vw;
   height: 100vh;
   display: flex;
-  align-items:  center;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  font-family: "Segoe UI";
 }
-
-form {
-  width: 420px;
-  height: 640px;
+.container2,
+.container3 {
+  width: 380px;
   border-radius: 16px;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
 }
-.startChat {
-  width: 440px;
-  height: 480px;
+.container3 {
+  height: 625px;
+}
+.container2 {
+  height: 570px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+.inputIcon {
+  font-size: 24px;
+  color: #949494;
+  padding-right: 8px;
+}
+.inputIconP {
+  font-size: 28px;
+  color: #949494;
+  padding: 8px;
+}
+
+.field {
+  width: 310px;
+  height: 54px;
+  background-color: #dfe0e3;
+  border-radius: 8px;
+  border: none;
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 16px;
 }
 input[type="text"],
 input[type="password"] {
-  width: 360px;
-  height: 64px;
   background-color: #dfe0e3;
-  border-radius: 16px;
+  border-radius: 8px;
   border: none;
-  font-size: 20px;
-  padding-left: 8px;
-}
-input:focus {
+  font-size: 18px;
+  text-align: right;
   outline: none;
+  padding-right: 8px;
+  font-family: "Vazir-Regular";
 }
 #submit {
-  width: 360px;
-  height: 64px;
-  border-radius: 16px;
+  width: 290px;
+  height: 54px;
+  border-radius: 32px;
   border: none;
-  background-color: #071f75;
+  background-color: #1d334d;
   color: #ffffff;
-  font-size: 20px;
+  font-size: 18px;
+  margin-top: 16px;
+  font-family: "Vazir-Regular";
 }
 #link {
   width: 360px;
@@ -50,10 +83,21 @@ input:focus {
   border: none;
   background-color: #ffffff;
   color: #949494;
-  font-size: 20px;
+  font-size: 18px;
+  font-family: "Vazir-Regular";
 }
 .title {
   font-size: 36px;
-  color: #949494;
-  font-family: "Segoepr";
+  color: #1d334d;
+  font-family: "Vazir-Bold";
+}
+.userImg {
+  width: 96px;
+  height: 96px;
+  padding-top: 20px;
+}
+.error {
+  font-size: 14px;
+  color: #fb0100;
+  font-family: "Vazir-Regular";
 }
