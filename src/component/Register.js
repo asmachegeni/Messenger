@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./../style/Logins.css";
-import User from "./../assets/user.png";
+import User from "./../assets/user1.png";
 import { AiOutlineIdcard } from "react-icons/ai";
 import { TiLockClosed, TiLockOpen } from "react-icons/ti";
 import {FaUserAlt} from 'react-icons/fa'

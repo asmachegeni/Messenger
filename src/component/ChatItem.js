@@ -1,7 +1,7 @@
 import React from "react";
 import './../style/ChatItem.css'
-import image from './../assets/images.png'
-const ChatItem = ({ContactName='Asma:)', lastMessage='ok,ty' }) => {
+import image from './../assets/user.png'
+const ChatItem = ({ContactName='نرگس', lastMessage='باشه مرسی' }) => {
   return (
     <div className="ChatItemcontainer">
     <div className="ChatItem">
@@ -11,7 +11,6 @@ const ChatItem = ({ContactName='Asma:)', lastMessage='ok,ty' }) => {
         <span id="message">{lastMessage}</span>
       </div>
       </div>
-      <div className="line"></div>
     </div>
   );
 };

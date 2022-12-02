@@ -1,13 +1,14 @@
 .titleContainer {
-  width: 768px;
-  height: 96px;
-  background-color: #ffffff;
+  width: 1000px;
+  height: 76px;
+  background-color: #20334D;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   position: fixed;
   z-index: 10;
+  box-shadow: 8px 8px 16px rgba(0,0,0,0.40)
 }
 .content {
   display: flex;
@@ -17,18 +18,18 @@
   padding-left: 16px;
 }
 .profile {
-  width: 60px;
-  height: 60px;
+  width: 54px;
+  height: 54px;
   border-radius: 30px;
   margin-right: 32px;
 }
 .nameC{
-  color: #071f75;
+  color: #fff;
   font-size: 20px;
-  font-weight: bold;
+  font-family:"Vazir-Regular";
 }
 .backIcon {
-  font-size: 24px;
-  color: #071f75;
+  font-size: 28px;
+  color: #fff;
   padding-right: 16px;
 }

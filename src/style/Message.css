@@ -1,9 +1,11 @@
 .messageContainerUser {
-  background-color: #ffffff;
-  border-radius: 20px 20px 0 20px;
-  margin: 24px;
-  max-width: 200px;
-  min-width: 80px;
+  background-color: #EBEDF0;
+  border-radius: 16px 16px 0 16px;
+  margin-bottom: 24px;
+  max-width: 150px;
+  min-width: 30px;
+  /* display:block; */
+  /* width:auto; */
   position: relative;
    left: 512px;
 }
@@ -12,29 +14,27 @@
   padding-right: 8px;
   padding-top: 4px;
   word-wrap: break-word;
-  color: #071f75;
+  color: #1D334D;
+  font-family:"Vazir-Regular";
 }
-.dateUser {
+.dateUser ,.dateClient{
   padding: 12px;
   font-size: 12px;
-  color: #8c9edb;
+  color: #949494;
+  font-family:"Vazir-Regular";
 }
 .messageContainerClient {
-  background-color: #071f75;
-  border-radius: 0 20px 20px 20px;
+  background-color: #FDE1E0;
+  border-radius: 0 16px 16px 16px;
   margin: 24px;
   max-width: 200px;
-  min-width: 80px;
+  min-width: 60px;
 }
 .textClient {
   padding-left: 8px;
   padding-right: 8px;
   padding-top: 4px;
   word-wrap: break-word;
-  color: #ffffff;
-}
-.dateClient {
-  padding: 12px;
-  font-size: 12px;
-  color: #8c9edb;
+  color: #1D334D;
+  font-family:"Vazir-Regular";
 }

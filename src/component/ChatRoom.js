@@ -8,8 +8,8 @@ const ChatRoom = () => {
   const [username, setUsername] = useState("asma");
   const [contacts, setContascts] = useState([
     {
-      name: "user1",
-      lastMessage: "thank:)",
+      name: "نرگس",
+      lastMessage: "باشه مرسی",
       phone: "09034179326",
       messages: [
         { text: "what??", date: "2022", senderPhone: "09034179326" },

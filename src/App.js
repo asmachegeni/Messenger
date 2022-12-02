@@ -17,10 +17,10 @@ function App() {
     // <Title/>
     // <Message/>
     // <Conversation/>
-    // <ChatRoom />
+    <ChatRoom />
     // <Profile />
     // <Login/>
-    <Register/>
+    // <Register/>
     // </div>
   );
 }

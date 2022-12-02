@@ -1,5 +1,5 @@
 import React from "react";
-import image from "./../assets/images.png";
+import image from "./../assets/user.png";
 import {AiOutlinePlusCircle} from "react-icons/ai";
 import './../style/Profile.css'
 const Profile = () => {
