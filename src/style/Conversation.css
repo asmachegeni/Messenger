@@ -1,9 +1,8 @@
 .ConversationContainer {
-  /* height: max-content; */
   min-height: 700px;
   max-height: max-content;
   width: 768px;
-  background-color: #dfe0e3;
+  background-image: linear-gradient(#1D334D,#353551);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
