@@ -6,7 +6,7 @@ import {
 } from "react-icons/ai";
 import ChatItem from "./ChatItem";
 import "./../style/Search.css";
-const Search = ({ contacts = ["asma", "zsaa", "sd", "rezvan"] }) => {
+const Search = ({ contacts = ["asma", "zsaa", "sd", "rezvan"], change }) => {
   const [content, setContent] = useState("");
   const [contactSearch, setSearch] = useState("");
   const SearchContact = (input) => {
@@ -24,7 +24,7 @@ const Search = ({ contacts = ["asma", "zsaa", "sd", "rezvan"] }) => {
     <div className="SearchContainer">
       <div className="Searchbar">
         {content ? (
-          <AiOutlineClose className="CloseIcon" />
+          <AiOutlineClose className="CloseIcon" onClick={change} />
         ) : (
           <AiOutlineSearch className="SearchIcon" />
         )}

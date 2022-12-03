@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import ChatList from "./ChatList";
 import Conversation from "./Conversation";
-import Profile from "./Profile";
 import "./../style/ChatRoom.css";
+import Profile from "./Profile";
+import ChatList from "./ChatList";
+import Search from "./Search";
 const ChatRoom = () => {
   const [phone, setPhone] = useState("09034179326");
   const [username, setUsername] = useState("asma");
+  const [showSearch, setShowSearch] = useState(false);
   const [contacts, setContascts] = useState([
     {
       name: "نرگس",
@@ -29,14 +31,25 @@ const ChatRoom = () => {
     let con = conversation.slice();
     con[0].messages = conversationTemp;
     setContascts(con);
-    console.log(contacts)
+    console.log(contacts);
+  };
+  const changeComponent = () => {
+    setShowSearch(!showSearch);
+    console.log("cldd");
   };
   return (
     <div className="ChatRoom">
-      <div className="Chats">
-        <Profile />
-        <ChatList contactInfo={contacts} />
-      </div>
+      {showSearch ? (
+        <div className="Chats">
+          <Search  change={changeComponent} />
+        </div>
+      ) : (
+        <div className="Chats">
+          <Profile change={changeComponent} />
+          <ChatList contactInfo={contacts} />
+        </div>
+      )}
+
       <Conversation
         conversationInfo={contacts}
         userPhone={phone}
