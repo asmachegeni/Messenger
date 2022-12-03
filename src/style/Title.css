@@ -1,14 +1,14 @@
 .titleContainer {
   width: 1000px;
   height: 76px;
-  background-color: #20334D;
+  background-color: #20334d;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   position: fixed;
   z-index: 10;
-  box-shadow: 8px 8px 16px rgba(0,0,0,0.40)
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
 }
 .content {
   display: flex;
@@ -23,10 +23,10 @@
   border-radius: 30px;
   margin-right: 32px;
 }
-.nameC{
+.nameC {
   color: #fff;
   font-size: 20px;
-  font-family:"Vazir-Regular";
+  font-family: "Vazir-Regular";
 }
 .backIcon {
   font-size: 28px;

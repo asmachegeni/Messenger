@@ -3,31 +3,39 @@ import "./../style/Logins.css";
 import User from "./../assets/user1.png";
 import { AiOutlineIdcard } from "react-icons/ai";
 import { TiLockClosed, TiLockOpen } from "react-icons/ti";
-import {FaUserAlt} from 'react-icons/fa'
+import { FaUserAlt } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 const Register = () => {
+  const Navigate = useNavigate();
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const[showPassError,setShowPassError]=useState(false);
-  const[showusernameError,setShowusernameError]=useState(false);
-  const[shownameError,setShownameError]=useState(false);
+  const [showPassError, setShowPassError] = useState(false);
+  const [showusernameError, setShowusernameError] = useState(false);
+  const [shownameError, setShownameError] = useState(false);
   const handleRegisterForm = () => {
     //http requset
     // if succesfull go next page
     // else show error message
-    console.log("click");
+    Navigate("/ChatRoom");
   };
   const IconClick = () => {
     setShowPassword(!showPassword);
   };
   return (
     <div className="container">
-      <div className={showPassError||shownameError||showusernameError?"container3":"container2"}>
-      <img src={User} className="userImg" />
+      <div
+        className={
+          showPassError || shownameError || showusernameError
+            ? "container3"
+            : "container2"
+        }
+      >
+        <img src={User} className="userImg" />
         <span className="title">ثبت نام</span>
         <form>
-        <div className="field">
+          <div className="field">
             <input
               type="text"
               placeholder="نام"
@@ -38,7 +46,9 @@ const Register = () => {
             />
             <FaUserAlt className="inputIcon" />
           </div>
-          {shownameError&&<span className="error">نام وارد شده معتبر نیست</span>}
+          {shownameError && (
+            <span className="error">نام وارد شده معتبر نیست</span>
+          )}
           <div className="field">
             <input
               type="text"
@@ -50,7 +60,9 @@ const Register = () => {
             />
             <AiOutlineIdcard className="inputIcon" />
           </div>
-          {showusernameError&&<span className="error">نام کاربری اشتباه است</span>}
+          {showusernameError && (
+            <span className="error">نام کاربری اشتباه است</span>
+          )}
           <div className="field">
             <input
               type={showPassword ? "text" : "password"}
@@ -66,14 +78,19 @@ const Register = () => {
               <TiLockClosed className="inputIconP" onClick={IconClick} />
             )}
           </div>
-          {showPassError&&<span className="error">رمز وارد شده نادرست است</span>}
+          {showPassError && (
+            <span className="error">رمز وارد شده نادرست است</span>
+          )}
           <input
             type="submit"
             value="ثبت نام"
             onClick={handleRegisterForm}
             id="submit"
           />
-          <input type="submit" value="ورود" id="link" />
+
+          <Link id="link" to={"/"}>
+            ورود
+          </Link>
         </form>
       </div>
     </div>
