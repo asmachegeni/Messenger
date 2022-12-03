@@ -2,18 +2,29 @@
   min-height: 700px;
   max-height: max-content;
   width: 768px;
-  background-image: linear-gradient(#1D334D,#353551);
+  background-image: linear-gradient(#1d334d, #353551);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
+.cont {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 10;
+  bottom: 0;
+}
 .textbox {
+  padding-top: 12px;
   border: none;
-  width: 712px;
+  width: 696px;
   height: 48px;
-  background-color: #f5f6fa;
-  font-family: "Segoe UI";
+  background-color: #e3edee;
+  font-family: "Vazir-Regular";
   font-size: 16px;
+  text-align: right;
   border: none;
   overflow: hidden;
   outline: none;
@@ -21,22 +32,16 @@
   -moz-box-shadow: none;
   box-shadow: none;
   resize: none;
-}
-.cont {
-  position: fixed;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  z-index: 10;
-  bottom: 0;
+  align-self: center;
 }
 .btn {
-  font-size: 32px;
-  color: #071f75;
+  font-size: 24px;
+  color: #20334d;
   width: 36px;
   height: 52px;
-  background-color: #f5f6fa;
-  padding-right: 16px;
+  background-color: #e3edee;
+  padding-left: 24px;
+  padding-right: 8px;
 }
 .contentConversation {
   display: flex;

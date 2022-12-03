@@ -21,7 +21,7 @@ const Conversation = ({ conversationInfo, userPhone, AddMessage }) => {
       </div>
       <div className="cont">
         <textarea
-          placeholder="Write a message..."
+          placeholder=".... نوشتن پیام"
           className="textbox"
           onChange={(e) => {
             setValue(e.target.value);
