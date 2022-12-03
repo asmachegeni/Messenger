@@ -9,6 +9,7 @@ import ChatRoom from "./component/ChatRoom";
 import Profile from "./component/Profile";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import Search from "./component/Search";
 function App() {
   return (
     // <div className="App">
@@ -17,7 +18,8 @@ function App() {
     // <Title/>
     // <Message/>
     // <Conversation/>
-    <ChatRoom />
+    // <ChatRoom />
+    <Search />
     // <Profile />
     // <Login/>
     // <Register/>
