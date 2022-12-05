@@ -16,7 +16,7 @@ const ChatRoom = () => {
       messages: [
         { text: "what??", date: "2022", senderPhone: "09034179326" },
         { text: "hi", date: "2022", senderPhone: "09034179326" },
-        { text: "now", date: "2022", senderPhone: "09034179322" },
+        { text: "now fffjf ijifliuoi pipoupou ipoipo foudoiu ooo dfsdfkj jkjkjjhkj hkjhkjhk kjhkjhjk", date: "2022", senderPhone: "09034179322" },
       ],
     },
   ]);
