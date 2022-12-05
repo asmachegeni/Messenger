@@ -5,7 +5,6 @@
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-  background-image: linear-gradient(#DAE1E9, #F9E8EE);
+  background-image: linear-gradient(#dae1e9, #f9e8ee);
   border-radius: 32px 32px 0px 0px;
-
 }

@@ -16,32 +16,37 @@ const ChatRoom = () => {
       messages: [
         { text: "what??", date: "2022", senderPhone: "09034179326" },
         { text: "hi", date: "2022", senderPhone: "09034179326" },
-        { text: "now fffjf ijifliuoi pipoupou ipoipo foudoiu ooo dfsdfkj jkjkjjhkj hkjhkjhk kjhkjhjk", date: "2022", senderPhone: "09034179322" },
+        {
+          text: "now fffjf ijifliuoi pipoupou ipoipo foudoiu ooo dfsdfkj jkjkjjhkj hkjhkjhk kjhkjhjk",
+          date: "2022",
+          senderPhone: "09034179322",
+        },
       ],
     },
   ]);
   const [nowConversation, setNewConversation] = useState({});
   const AddMessage = (conversation, message) => {
-    let conversationTemp = conversation[0].messages.slice();
-    conversationTemp.push({
-      text: message,
-      date: "2022",
-      senderPhone: "09034179322",
-    });
-    let con = conversation.slice();
-    con[0].messages = conversationTemp;
-    setContascts(con);
-    console.log(contacts);
+    if (message) {
+      let conversationTemp = conversation[0].messages.slice();
+      conversationTemp.push({
+        text: message,
+        date: "2022",
+        senderPhone: "09034179322",
+      });
+      let con = conversation.slice();
+      con[0].messages = conversationTemp;
+      setContascts(con);
+    }
   };
+
   const changeComponent = () => {
     setShowSearch(!showSearch);
-    console.log("cldd");
   };
   return (
     <div className="ChatRoom">
       {showSearch ? (
         <div className="Chats">
-          <Search  change={changeComponent} />
+          <Search change={changeComponent} />
         </div>
       ) : (
         <div className="Chats">
