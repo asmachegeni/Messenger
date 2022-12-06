@@ -6,18 +6,23 @@ import { FaTelegramPlane } from "react-icons/fa";
 const Conversation = ({ conversationInfo, userPhone, AddMessage }) => {
   const [v, setValue] = useState("");
   const textref = useRef();
+  let i = 0;
   return (
     <div className="ConversationContainer">
       <Title name={conversationInfo[0].name} />
       <div className="contentConversation">
-        {conversationInfo[0].messages.map((message) => (
-          <Message
-            text={message.text}
-            date={message.date}
-            senderPhone={message.senderPhone}
-            userPhone={userPhone}
-          />
-        ))}
+        {conversationInfo[0].messages.map((message) => {
+          i++;
+          return (
+            <Message
+              text={message.text}
+              date={message.date}
+              senderPhone={message.senderPhone}
+              userPhone={userPhone}
+              key={i}
+            />
+          );
+        })}
       </div>
       <div className="cont">
         <textarea

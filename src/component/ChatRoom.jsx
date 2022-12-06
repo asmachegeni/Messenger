@@ -38,7 +38,23 @@ const ChatRoom = () => {
       setContascts(con);
     }
   };
-
+  const AddContact = (NewContacts) => {
+    let hasContact = contacts.find((contact) => {
+      return NewContacts === contact.name;
+    });
+    if (!hasContact) {
+      let temp = contacts.slice();
+      temp.push({
+        name: NewContacts,
+        lastMessage: "",
+        phone: "09034179326",
+        messages: [],
+      });
+      setContascts(temp);
+      console.log("ddddd");
+    }
+    console.log("O_O");
+  };
   const changeComponent = () => {
     setShowSearch(!showSearch);
   };
@@ -46,12 +62,17 @@ const ChatRoom = () => {
     <div className="ChatRoom">
       {showSearch ? (
         <div className="Chats">
-          <Search change={changeComponent} />
+          <Search change={changeComponent} handleClick={AddContact} />
         </div>
       ) : (
         <div className="Chats">
           <Profile change={changeComponent} />
-          <ChatList contactInfo={contacts} />
+          <ChatList
+            contactInfo={contacts}
+            handleClick={() => {
+              console.log("Boom");
+            }}
+          />
         </div>
       )}
 

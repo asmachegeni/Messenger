@@ -6,7 +6,11 @@ import {
 } from "react-icons/ai";
 import ChatItem from "./ChatItem";
 import "./../style/Search.css";
-const Search = ({ contacts = ["asma", "acaa", "sd", "rezvan"], change }) => {
+const Search = ({
+  contacts = ["asma", "acaa", "sd", "rezvan"],
+  change,
+  handleClick,
+}) => {
   const [content, setContent] = useState("");
   const [contactSearch, setSearch] = useState([""]);
   const SearchContact = (input) => {
@@ -23,7 +27,6 @@ const Search = ({ contacts = ["asma", "acaa", "sd", "rezvan"], change }) => {
     } else {
       setSearch([]);
     }
-    console.log(contactSearch);
   };
   return (
     <div className="SearchContainer">
@@ -46,9 +49,11 @@ const Search = ({ contacts = ["asma", "acaa", "sd", "rezvan"], change }) => {
       {contactSearch.map((contactS) => {
         return contactS ? (
           <ChatItem
+            handleClick={handleClick}
             ContactName={contactS}
             lastMessage={""}
             nameClass={"nameSearch"}
+            key={contactS}
           />
         ) : (
           ""

@@ -1,9 +1,19 @@
 import React from "react";
 import "./../style/ChatItem.css";
 import image from "./../assets/user.png";
-const ChatItem = ({ ContactName, lastMessage,nameClass="name" }) => {
+const ChatItem = ({
+  ContactName,
+  lastMessage,
+  nameClass = "name",
+  handleClick,
+}) => {
   return (
-    <div className="ChatItemcontainer">
+    <div
+      className="ChatItemcontainer"
+      onClick={() => {
+        handleClick(ContactName);
+      }}
+    >
       <div className="ChatItem">
         <img className="imgContact" src={image} />
         <div className="Chattexts">
