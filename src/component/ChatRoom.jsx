@@ -23,21 +23,54 @@ const ChatRoom = () => {
         },
       ],
     },
+    {
+      name: "اسما",
+      lastMessage: "باشه مرسی",
+      phone: "09034179326",
+      messages: [
+        { text: "what??", date: "2022", senderPhone: "09034179326" },
+        { text: "hiiiiii", date: "2022", senderPhone: "09034179326" },
+        {
+          text: " pipoupou ipoipo fo",
+          date: "2022",
+          senderPhone: "09034179322",
+        },
+      ],
+    },
   ]);
-  const [nowConversation, setNewConversation] = useState({});
+  const [nowConversation, setNewConversation] = useState({
+    name: "نرگس",
+    lastMessage: "باشه مرسی",
+    phone: "09034179326",
+    messages: [
+      { text: "what??", date: "2022", senderPhone: "09034179326" },
+      { text: "hi", date: "2022", senderPhone: "09034179326" },
+      {
+        text: "now fffjf ijifliuoi pipoupou ipoipo foudoiu ooo dfsdfkj jkjkjjhkj hkjhkjhk kjhkjhjk",
+        date: "2022",
+        senderPhone: "09034179322",
+      },
+    ],
+  });
+  //-------------------------------------------------------------------------------------------
   const AddMessage = (conversation, message) => {
     if (message) {
-      let conversationTemp = conversation[0].messages.slice();
-      conversationTemp.push({
+      let messageTemp = conversation.messages.slice();
+      messageTemp.push({
         text: message,
         date: "2022",
         senderPhone: "09034179322",
       });
-      let con = conversation.slice();
-      con[0].messages = conversationTemp;
-      setContascts(con);
+      let contactsTemp = contacts.slice();
+      contactsTemp.forEach((contact) => {
+        if (conversation.name === contact.name) {
+          contact.messages = messageTemp;
+        }
+      });
+      setContascts(contactsTemp);
     }
   };
+  //-------------------------------------------------------------------------------------------
   const AddContact = (NewContacts) => {
     let hasContact = contacts.find((contact) => {
       return NewContacts === contact.name;
@@ -52,12 +85,26 @@ const ChatRoom = () => {
       });
       setContascts(temp);
       console.log("ddddd");
+    } else {
+      LoadConversation(NewContacts);
     }
     console.log("O_O");
   };
+  //-------------------------------------------------------------------------------------------
   const changeComponent = () => {
     setShowSearch(!showSearch);
   };
+  //-------------------------------------------------------------------------------------------
+  const LoadConversation = (name) => {
+    let nowConract;
+    contacts.forEach((contact) => {
+      if (contact.name === name) {
+        nowConract = contact;
+      }
+    });
+    setNewConversation(nowConract);
+  };
+  //-------------------------------------------------------------------------------------------
   return (
     <div className="ChatRoom">
       {showSearch ? (
@@ -67,17 +114,12 @@ const ChatRoom = () => {
       ) : (
         <div className="Chats">
           <Profile change={changeComponent} />
-          <ChatList
-            contactInfo={contacts}
-            handleClick={() => {
-              console.log("Boom");
-            }}
-          />
+          <ChatList contactInfo={contacts} handleClick={LoadConversation} />
         </div>
       )}
 
       <Conversation
-        conversationInfo={contacts}
+        conversationInfo={nowConversation}
         userPhone={phone}
         AddMessage={AddMessage}
       />

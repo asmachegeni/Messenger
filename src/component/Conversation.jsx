@@ -9,9 +9,9 @@ const Conversation = ({ conversationInfo, userPhone, AddMessage }) => {
   let i = 0;
   return (
     <div className="ConversationContainer">
-      <Title name={conversationInfo[0].name} />
+      <Title name={conversationInfo.name} />
       <div className="contentConversation">
-        {conversationInfo[0].messages.map((message) => {
+        {conversationInfo.messages.map((message) => {
           i++;
           return (
             <Message
