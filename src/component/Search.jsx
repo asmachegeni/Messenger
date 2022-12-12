@@ -34,7 +34,7 @@ const Search = ({
         {content ? (
           <AiOutlineClose className="CloseIcon" onClick={change} />
         ) : (
-          <AiOutlineSearch className="SearchIcon" />
+          <AiOutlineSearch className="BackIcon" />
         )}
         <input
           placeholder=" ....جستجو  "

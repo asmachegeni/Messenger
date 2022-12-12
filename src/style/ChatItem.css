@@ -1,13 +1,15 @@
 .ChatItemcontainer {
-  width: 360px;
+  width: 100%;
   height: 73px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-left: 8px; 
+
 }
 .ChatItem {
-  width: 360px;
+  width: 100%;
   height: 72px;
   background-color: none;
   display: flex;

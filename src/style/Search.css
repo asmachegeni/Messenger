@@ -3,19 +3,23 @@
   flex-direction: column;
   align-items: center;
   background-color: #1d334d;
+  width: 30vw;
+  height: 100vh;
 }
 .Searchbar {
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
+  justify-content: space-between;
 }
-.SearchIcon,
+.BackIcon,
 .CloseIcon {
   font-size: 24px;
   color: #ffff;
-}
+ }
 .SearchInput {
   height: 48px;
+  width: 20vw;
   outline: none;
   color: #fff;
   font-size: 16px;
