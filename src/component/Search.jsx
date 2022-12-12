@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   AiOutlineSearch,
   AiOutlineClose,
@@ -7,12 +7,13 @@ import {
 import ChatItem from "./ChatItem";
 import "./../style/Search.css";
 const Search = ({
-  contacts = ["asma", "acaa", "ad", "rezvan","اسما"],
+  contacts = ["asma", "acaa", "ad", "rezvan", "اسما"],
   change,
   handleClick,
 }) => {
   const [content, setContent] = useState("");
   const [contactSearch, setSearch] = useState([""]);
+  const inp = useRef();
   const SearchContact = (input) => {
     let temp = [];
     let temp2 = [];
@@ -32,7 +33,12 @@ const Search = ({
     <div className="SearchContainer">
       <div className="Searchbar">
         {content ? (
-          <AiOutlineClose className="CloseIcon" onClick={change} />
+          <AiOutlineClose
+            className="CloseIcon"
+            onClick={() => {
+              setContent("");
+            }}
+          />
         ) : (
           <AiOutlineSearch className="BackIcon" />
         )}
@@ -43,8 +49,10 @@ const Search = ({
             SearchContact(e.target.value);
             setContent(e.target.value);
           }}
+          value={content}
+          ref={inp}
         />
-        <AiOutlineArrowLeft className="backIcon" />
+        <AiOutlineArrowLeft className="backIcon" onClick={change} />
       </div>
       {contactSearch.map((contactS) => {
         return contactS ? (
