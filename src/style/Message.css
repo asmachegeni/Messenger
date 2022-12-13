@@ -5,9 +5,9 @@
   height: min-content;
   max-width: 300px;
   width: fit-content;
-  position: relative;
   white-space: pre-wrap;
-  left: 512px;
+  align-self: flex-end;
+  margin-right: 24px;
 }
 .textUser {
   padding-left: 8px;
@@ -30,7 +30,7 @@
   height: min-content;
   max-width: 300px;
   width: fit-content;
-  /* block-size: fit-content; */
+  float: right;
   margin-bottom: 24px;
   white-space: pre-wrap;
   margin-left: 24px;

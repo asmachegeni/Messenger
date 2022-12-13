@@ -18,5 +18,14 @@
 }
 
 ::-webkit-scrollbar {
+  width: 4px;
+  background:rgba(223, 224, 227,0.1);
+}
+::-webkit-scrollbar-track{
   display: none;
+}
+::-webkit-scrollbar-thumb{
+  border-radius: 16px;
+  background: rgba(148, 148, 148, 0.5);
+  height: 10px;
 }

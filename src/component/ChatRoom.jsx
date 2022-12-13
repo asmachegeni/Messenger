@@ -61,6 +61,8 @@ const ChatRoom = () => {
         date: "2022",
         senderPhone: "09034179322",
       });
+      conversation.messages = messageTemp;
+      setNewConversation(conversation);
       let contactsTemp = contacts.slice();
       contactsTemp.forEach((contact) => {
         if (conversation.name === contact.name) {
