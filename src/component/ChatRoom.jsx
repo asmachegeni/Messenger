@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Conversation from "./Conversation";
 import "./../style/ChatRoom.css";
 import Profile from "./Profile";
 import ChatList from "./ChatList";
 import Search from "./Search";
 const ChatRoom = () => {
+  const menu = useRef();
+  const conv = useRef();
   const [phone, setPhone] = useState("09034179326");
   const [username, setUsername] = useState("asma");
   const [showSearch, setShowSearch] = useState(false);
+  const [isForground, setIsForground] = useState(true);
   const [contacts, setContascts] = useState([
     {
       name: "نرگس",
@@ -98,6 +101,7 @@ const ChatRoom = () => {
   };
   //-------------------------------------------------------------------------------------------
   const LoadConversation = (name) => {
+    ShowConversation();
     let nowConract;
     contacts.forEach((contact) => {
       if (contact.name === name) {
@@ -107,6 +111,20 @@ const ChatRoom = () => {
     setNewConversation(nowConract);
   };
   //-------------------------------------------------------------------------------------------
+  const ShowMenu = () => {
+    menu.current.classList.remove("background");
+    menu.current.classList.add("foregroundComponent");
+    conv.current.classList.remove("foregroundComponent");
+    conv.current.classList.add("background");
+  };
+  //-------------------------------------------------------------------------------------------
+  const ShowConversation = () => {
+    conv.current.classList.remove("background");
+    conv.current.classList.add("foregroundComponent");
+    menu.current.classList.remove("foregroundComponent");
+    menu.current.classList.add("background");
+  };
+  //-------------------------------------------------------------------------------------------
   return (
     <div className="ChatRoom">
       {showSearch ? (
@@ -114,17 +132,19 @@ const ChatRoom = () => {
           <Search change={changeComponent} handleClick={AddContact} />
         </div>
       ) : (
-        <div className="Chats">
+        <div className="Chats background" ref={menu}>
           <Profile change={changeComponent} />
           <ChatList contactInfo={contacts} handleClick={LoadConversation} />
         </div>
       )}
-
-      <Conversation
-        conversationInfo={nowConversation}
-        userPhone={phone}
-        AddMessage={AddMessage}
-      />
+      <div ref={conv} className="ConversactoinSec foregroundComponent">
+        <Conversation
+          conversationInfo={nowConversation}
+          userPhone={phone}
+          AddMessage={AddMessage}
+          ShowMenu={ShowMenu}
+        />
+      </div>
     </div>
   );
 };

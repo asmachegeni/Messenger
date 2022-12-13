@@ -3,13 +3,13 @@ import Title from "./Title";
 import Message from "./Message";
 import "./../style/Conversation.css";
 import { FaTelegramPlane } from "react-icons/fa";
-const Conversation = ({ conversationInfo, userPhone, AddMessage }) => {
+const Conversation = ({ conversationInfo, userPhone, AddMessage,ShowMenu }) => {
   const [v, setValue] = useState("");
   const textref = useRef();
   let i = 0;
   return (
     <div className="ConversationContainer">
-      <Title name={conversationInfo.name} />
+      <Title name={conversationInfo.name}  ShowMenu={ShowMenu}/>
       <div className="contentConversation">
         {conversationInfo.messages.map((message) => {
           i++;

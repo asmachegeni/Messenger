@@ -1,5 +1,5 @@
 .ChatItemcontainer {
-  width: 100%;
+  width: inherit;
   height: 73px;
   display: flex;
   flex-direction: column;

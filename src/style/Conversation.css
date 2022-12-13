@@ -6,7 +6,6 @@
   flex-direction: column;
   justify-content: flex-start;
 }
-
 .cont {
   position: fixed;
   display: flex;
@@ -51,4 +50,15 @@
   justify-content: flex-start;
   height: 100vh;
   overflow: scroll;
+}
+@media screen and (max-width: 992px) {
+  .ConversationContainer {
+    width: 100vw;
+  }
+  .cont {
+    width: 100vw;
+  }
+  .textbox {
+    width: 98vw;
+  }
 }

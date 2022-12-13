@@ -57,7 +57,7 @@ const Search = ({
             }}
           />
         ) : (
-          <AiOutlineSearch className="BackIcon" />
+          <AiOutlineSearch className="SearchIcon" />
         )}
         <input
           placeholder=" ....جستجو  "
@@ -69,7 +69,7 @@ const Search = ({
           value={content}
           ref={inp}
         />
-        <AiOutlineArrowLeft className="backIcon" onClick={change} />
+        <AiOutlineArrowLeft className="BackIcon" onClick={change} />
       </div>
       {contactSearch.map((contactS) => {
         return contactS ? (

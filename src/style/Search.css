@@ -13,10 +13,11 @@
   justify-content: space-between;
 }
 .BackIcon,
-.CloseIcon {
+.CloseIcon,
+.SearchIcon {
   font-size: 24px;
   color: #ffff;
- }
+}
 .SearchInput {
   height: 48px;
   width: 20vw;
@@ -30,4 +31,9 @@
 }
 .SearchInput::placeholder {
   color: #fff;
+}
+@media screen and (max-width: 992px) {
+  .SearchContainer {
+    width: 100vw;
+  }
 }

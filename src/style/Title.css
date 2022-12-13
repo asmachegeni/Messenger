@@ -1,5 +1,5 @@
 .titleContainer {
-  width: 70%;
+  width: 70vw;
   height: 76px;
   background-color: #20334d;
   display: flex;
@@ -32,4 +32,14 @@
   font-size: 28px;
   color: #fff;
   padding-right: 16px;
+}
+@media screen and (min-width: 992px) {
+  .backIcon {
+    display: none;
+  }
+}
+@media screen and (max-width: 992px) {
+  .titleContainer {
+    width: 100vw;
+  }
 }

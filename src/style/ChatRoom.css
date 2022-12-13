@@ -7,6 +7,15 @@
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
+  cursor: pointer;
+}
+.ConversactoinSec {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70vw;
+  height: 100%;
 }
 .Chats {
   display: flex;
@@ -16,16 +25,23 @@
   width: 30%;
   height: 80%;
 }
-
 ::-webkit-scrollbar {
   width: 4px;
-  background:rgba(223, 224, 227,0.1);
+  background: rgba(223, 224, 227, 0.1);
 }
-::-webkit-scrollbar-track{
+::-webkit-scrollbar-track {
   display: none;
 }
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   border-radius: 16px;
   background: rgba(148, 148, 148, 0.5);
   height: 10px;
+}
+@media screen and (max-width: 992px) {
+  .background{
+    display: none;
+  }
+  .foregroundComponent {
+    width: 100vw;
+  }
 }
