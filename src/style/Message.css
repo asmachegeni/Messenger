@@ -6,6 +6,7 @@
   max-width: 300px;
   width: fit-content;
   position: relative;
+  white-space: pre-wrap;
   left: 512px;
 }
 .textUser {
@@ -29,8 +30,9 @@
   height: min-content;
   max-width: 300px;
   width: fit-content;
-  block-size: fit-content;
+  /* block-size: fit-content; */
   margin-bottom: 24px;
+  white-space: pre-wrap;
   margin-left: 24px;
 }
 .textClient {

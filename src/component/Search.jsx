@@ -7,7 +7,24 @@ import {
 import ChatItem from "./ChatItem";
 import "./../style/Search.css";
 const Search = ({
-  contacts = ["asma", "acaa", "ad", "rezvan", "اسما"],
+  contacts = [
+    "asma",
+    "acaa",
+    "ad",
+    "rezvan",
+    "اسما",
+    "t",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "h",
+    "g",
+    "i",
+    "j",
+    "k",
+  ],
   change,
   handleClick,
 }) => {
