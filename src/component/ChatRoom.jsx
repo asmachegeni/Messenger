@@ -5,9 +5,11 @@ import Profile from "./Profile";
 import ChatList from "./ChatList";
 import Search from "./Search";
 const ChatRoom = () => {
-  const menu = useRef();
-  const conv = useRef();
+  const menu = useRef(null);
+  const conv = useRef(null);
+  const se = useRef(null);
   const [phone, setPhone] = useState("09034179326");
+  const [isMobile, setIsMoblie] = useState(false);
   const [username, setUsername] = useState("asma");
   const [showSearch, setShowSearch] = useState(false);
   const [isForground, setIsForground] = useState(true);
@@ -89,15 +91,16 @@ const ChatRoom = () => {
         messages: [],
       });
       setContascts(temp);
-      console.log("ddddd");
     } else {
       LoadConversation(NewContacts);
     }
-    console.log("O_O");
   };
   //-------------------------------------------------------------------------------------------
-  const changeComponent = () => {
-    setShowSearch(!showSearch);
+  const changeComponent = (boolvalue) => {
+    setShowSearch(boolvalue);
+    if (!showSearch) {
+      setIsMoblie(true);
+    }
   };
   //-------------------------------------------------------------------------------------------
   const LoadConversation = (name) => {
@@ -113,9 +116,14 @@ const ChatRoom = () => {
   //-------------------------------------------------------------------------------------------
   const ShowMenu = () => {
     menu.current.classList.remove("background");
+    menu.current.classList.remove("no");
     menu.current.classList.add("foregroundComponent");
     conv.current.classList.remove("foregroundComponent");
     conv.current.classList.add("background");
+    menu.current.classList.add("Chats");
+    se.current.classList.add("no");
+    se.current.classList.remove("Chats");
+    se.current.classList.remove("foregroundComponent");
   };
   //-------------------------------------------------------------------------------------------
   const ShowConversation = () => {
@@ -123,20 +131,29 @@ const ChatRoom = () => {
     conv.current.classList.add("foregroundComponent");
     menu.current.classList.remove("foregroundComponent");
     menu.current.classList.add("background");
+    console.log(conv.current.classList);
+  };
+  //-------------------------------------------------------------------------------------------
+  const ShowSearch = () => {
+    conv.current.classList.remove("foregroundComponent");
+    menu.current.classList.remove("foregroundComponent");
+    menu.current.classList.remove("Chats");
+    menu.current.classList.add("background");
+    menu.current.classList.add("no");
+    se.current.classList.remove("no");
+    se.current.classList.add("Chats");
+    se.current.classList.add("foregroundComponent");
   };
   //-------------------------------------------------------------------------------------------
   return (
     <div className="ChatRoom">
-      {showSearch ? (
-        <div className="Chats">
-          <Search change={changeComponent} handleClick={AddContact} />
-        </div>
-      ) : (
-        <div className="Chats background" ref={menu}>
-          <Profile change={changeComponent} />
-          <ChatList contactInfo={contacts} handleClick={LoadConversation} />
-        </div>
-      )}
+      <div ref={se} className={"no"}>
+        <Search change={ShowMenu} handleClick={AddContact} />
+      </div>
+      <div className={"Chats background"} ref={menu}>
+        <Profile change={ShowSearch} />
+        <ChatList contactInfo={contacts} handleClick={LoadConversation} />
+      </div>
       <div ref={conv} className="ConversactoinSec foregroundComponent">
         <Conversation
           conversationInfo={nowConversation}

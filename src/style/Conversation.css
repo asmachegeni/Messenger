@@ -34,6 +34,7 @@
   word-wrap: break-word;
   align-self: center;
   white-space: pre-wrap;
+  overflow: hidden;
 }
 .btn {
   font-size: 24px;
@@ -47,9 +48,12 @@
 .contentConversation {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  height: 100vh;
+  justify-content: flex-end;
+  margin-top: 84px;
+  margin-bottom: 64px;
+  height: 90vh;
   overflow: scroll;
+  overflow-x: hidden;
 }
 @media screen and (max-width: 992px) {
   .ConversationContainer {

@@ -8,6 +8,7 @@
   justify-content: center;
   align-items: flex-start;
   cursor: pointer;
+ 
 }
 .ConversactoinSec {
   display: flex;
@@ -25,11 +26,14 @@
   width: 30%;
   height: 80%;
 }
+.no{
+  display: none;
+}
 ::-webkit-scrollbar {
   width: 4px;
   background: rgba(223, 224, 227, 0.1);
 }
-::-webkit-scrollbar-track {
+::-webkit-scrollbar-track{
   display: none;
 }
 ::-webkit-scrollbar-thumb {
@@ -38,7 +42,7 @@
   height: 10px;
 }
 @media screen and (max-width: 992px) {
-  .background{
+  .background {
     display: none;
   }
   .foregroundComponent {

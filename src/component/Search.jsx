@@ -63,8 +63,8 @@ const Search = ({
           placeholder=" ....جستجو  "
           className="SearchInput"
           onChange={(e) => {
-            SearchContact(e.target.value);
             setContent(e.target.value);
+            SearchContact(content);
           }}
           value={content}
           ref={inp}
