@@ -9,6 +9,7 @@
   position: fixed;
   z-index: 10;
   box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+  /* top: 0; */
 }
 .content {
   display: flex;

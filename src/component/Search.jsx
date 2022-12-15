@@ -54,6 +54,7 @@ const Search = ({
             className="CloseIcon"
             onClick={() => {
               setContent("");
+            SearchContact();
             }}
           />
         ) : (
@@ -64,7 +65,7 @@ const Search = ({
           className="SearchInput"
           onChange={(e) => {
             setContent(e.target.value);
-            SearchContact(content);
+            SearchContact(e.target.value);
           }}
           value={content}
           ref={inp}

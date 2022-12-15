@@ -48,11 +48,11 @@
 .contentConversation {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  margin-top: 84px;
-  margin-bottom: 64px;
+  /* justify-content: flex-end; */
+  padding-top: 84px;
+  padding-bottom: 64px;
   height: 90vh;
-  overflow: scroll;
+  overflow: auto;
   overflow-x: hidden;
 }
 @media screen and (max-width: 992px) {

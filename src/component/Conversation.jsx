@@ -14,7 +14,6 @@ const Conversation = ({
   const mg = useRef();
   useEffect(() => {
     mg.current.scrollTo(0, mg.current.scrollHeight);
-    console.log(mg.current.scrollHeight);
   }, [conversationInfo.messages]);
   let i = 0;
   return (
