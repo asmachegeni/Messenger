@@ -41,7 +41,7 @@ const Register = () => {
               placeholder="نام"
               value={name}
               onChange={(event) => {
-                setUsername(event.target.value);
+                setName(event.target.value);
               }}
             />
             <FaUserAlt className="inputIcon" />
