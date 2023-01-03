@@ -13,50 +13,31 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassError, setShowPassError] = useState(false);
   const [showusernameError, setShowusernameError] = useState(false);
-  const fe = async () => {
-    await fetch("http://asmachegeni.ir/sanctum/csrf-cookie", {
-      method: "GET",
+  const handleForm = (e) => {
+    e.preventDefault();
+    fetch("http://asmachegeni.ir/sanctum/csrf-cookie", {
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
+        credentials: "same-origin",
       },
-    }).then((res) => {});
-  };
-  useEffect(() => {
-    // fe();
-    axios
-      .get("http://asmachegeni.ir/sanctum/csrf-cookie", {
+    }).then((response) => {
+      fetch("http://asmachegeni.ir/api/login", {
+        method: "POST",
         headers: {
-          Accept: "application/json",
+          credentials: "same-origin",
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
-      })
-      .then(function (response) {
-        console.log(response.headers.toString());
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
+      }).then((data) => {
+        if (data.status == 200) {
+          Navigate("/ChatRoom");
+        }
       });
-    // console.log(Cookies.get("XSRF-TOKEN"));
-    console.log(document.cookie);
-    // fetch("http://asmachegeni.ir/api/register", {
-    //       method: "POST",
-    //       headers: {
-    //         "X-XSRF-TOKEN": token,
-    //         "Accept": "application/json",
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify({
-    //         username: "asma",
-    //         password: 1053522,
-    //         name: "asma",
-    //       }),
-    //     })
-    //       .then((response) => {
-    //         response.json();
-    //       })
-    //       .then((res) => {
-    //         console.log(res);
-    //       });
-  }, []);
-  const handleForm = () => {};
+    });
+  };
 
   const IconClick = () => {
     setShowPassword(!showPassword);
@@ -100,7 +81,11 @@ const Login = () => {
           {showPassError && (
             <span className="error">رمز وارد شده نادرست است</span>
           )}
-          <input type="submit" value="ورود" onClick={handleForm} id="submit" />
+          {/* <input type="submit" value="ورود" onClick={handleForm} id="submit" /> */}
+          <button onClick={handleForm} id="submit">
+            ورود
+          </button>
+
           <Link id="link" to={"/Register"}>
             ثبت نام
           </Link>

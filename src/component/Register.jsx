@@ -14,11 +14,31 @@ const Register = () => {
   const [showPassError, setShowPassError] = useState(false);
   const [showusernameError, setShowusernameError] = useState(false);
   const [shownameError, setShownameError] = useState(false);
-  const handleRegisterForm = () => {
-    //http requset
-    // if succesfull go next page
-    // else show error message
-    Navigate("/ChatRoom");
+  const handleRegisterForm = (e) => {
+    e.preventDefault();
+    fetch("http://asmachegeni.ir/sanctum/csrf-cookie", {
+      headers: {
+        credentials: "same-origin",
+      },
+    }).then((response) => {
+      fetch("http://asmachegeni.ir/api/register", {
+        method: "POST",
+        headers: {
+          credentials: "same-origin",
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+          name: name,
+        }),
+      }).then((data) => {
+        if (data.status == 201) {
+          Navigate("/ChatRoom");
+        }
+      });
+    });
   };
   const IconClick = () => {
     setShowPassword(!showPassword);
