@@ -31,11 +31,17 @@ const Login = () => {
           username: username,
           password: password,
         }),
-      }).then((data) => {
-        if (data.status == 200) {
-          Navigate("/ChatRoom");
-        }
-      });
+      })
+        .then((data) => {
+          if (data.status == 200) {
+            Navigate("/ChatRoom");
+          }
+          return data.json();
+        })
+        .then((res) => {
+          // console.log(res.access_token);
+          Cookies.set("access_token", res.access_token);
+        });
     });
   };
 

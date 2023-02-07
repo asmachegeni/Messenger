@@ -1,99 +1,122 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Conversation from "./Conversation";
 import "./../style/ChatRoom.css";
 import Profile from "./Profile";
 import ChatList from "./ChatList";
 import Search from "./Search";
+import Cookies from "js-cookie";
+import Pusher from "pusher-js";
 const ChatRoom = () => {
   const menu = useRef(null);
   const conv = useRef(null);
   const se = useRef(null);
-  const [phone, setPhone] = useState("09034179326");
-  const [isMobile, setIsMoblie] = useState(false);
-  const [username, setUsername] = useState("asma");
+  const [id, setId] = useState(0);
+  const [isMoblie, setIsMoblie] = useState(false);
+  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [isForground, setIsForground] = useState(true);
-  const [contacts, setContascts] = useState([
-    {
-      name: "نرگس",
-      lastMessage: "باشه مرسی",
-      phone: "09034179326",
-      messages: [
-        { text: "what??", date: "2022", senderPhone: "09034179326" },
-        { text: "hi", date: "2022", senderPhone: "09034179326" },
-        {
-          text: "now fffjf ijifliuoi pipoupou ipoipo foudoiu ooo dfsdfkj jkjkjjhkj hkjhkjhk kjhkjhjk",
-          date: "2022",
-          senderPhone: "09034179322",
-        },
-      ],
-    },
-    {
-      name: "اسما",
-      lastMessage: "باشه مرسی",
-      phone: "09034179326",
-      messages: [
-        { text: "what??", date: "2022", senderPhone: "09034179326" },
-        { text: "hiiiiii", date: "2022", senderPhone: "09034179326" },
-        {
-          text: " pipoupou ipoipo fo",
-          date: "2022",
-          senderPhone: "09034179322",
-        },
-      ],
-    },
-  ]);
-  const [nowConversation, setNewConversation] = useState({
-    name: "نرگس",
-    lastMessage: "باشه مرسی",
-    phone: "09034179326",
-    messages: [
-      { text: "what??", date: "2022", senderPhone: "09034179326" },
-      { text: "hi", date: "2022", senderPhone: "09034179326" },
-      {
-        text: "now fffjf ijifliuoi pipoupou ipoipo foudoiu ooo dfsdfkj jkjkjjhkj hkjhkjhk kjhkjhjk",
-        date: "2022",
-        senderPhone: "09034179322",
+  let [contacts, setContacts] = useState([]);
+  const [nowConversation, setNewConversation] = useState(contacts[0]);
+  const [messages, setMessages] = useState([]);
+  useEffect(() => {
+    let token = Cookies.get("access_token");
+    fetch("http://asmachegeni.ir/sanctum/csrf-cookie", {
+      headers: {
+        credentials: "same-origin",
       },
-    ],
-  });
+    }).then((response) => {
+      fetch("http://asmachegeni.ir/api/user", {
+        method: "GET",
+        headers: {
+          credentials: "same-origin",
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: "Bearer " + token,
+        },
+      })
+        .then((data) => {
+          return data.json();
+        })
+        .then((response) => {
+          setUsername(response.username);
+          setName(response.name);
+          setId(response.id);
+        });
+    });
+    console.log("id", id);
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher("d606819a439ddf1201dc", {
+      cluster: "ap2",
+    });
+
+    var channel = pusher.subscribe("chat25");
+    channel.bind("App\\Events\\MessagePosted", function (data) {
+      console.log("aaaaaa");
+      console.log(data.message);
+    });
+  }, []);
   //-------------------------------------------------------------------------------------------
-  const AddMessage = (conversation, message) => {
+  const AddMessage = (oldMessages, message) => {
+    let token = Cookies.get("access_token");
     if (message) {
-      let messageTemp = conversation.messages.slice();
-      messageTemp.push({
-        text: message,
-        date: "2022",
-        senderPhone: "09034179322",
+      fetch("http://asmachegeni.ir/sanctum/csrf-cookie", {
+        headers: {
+          credentials: "same-origin",
+        },
+      }).then((response) => {
+        fetch("http://asmachegeni.ir/api/send_message", {
+          method: "POST",
+          headers: {
+            credentials: "same-origin",
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: "Bearer " + token,
+          },
+          body: JSON.stringify({
+            content: message,
+            receiver_id: id,
+          }),
+        })
+          .then((data) => {
+            if (data.status == 200) {
+            }
+            return data.json();
+          })
+          .then((res) => {});
       });
-      conversation.messages = messageTemp;
-      setNewConversation(conversation);
-      let contactsTemp = contacts.slice();
-      contactsTemp.forEach((contact) => {
-        if (conversation.name === contact.name) {
-          contact.messages = messageTemp;
-        }
-      });
-      setContascts(contactsTemp);
     }
   };
   //-------------------------------------------------------------------------------------------
   const AddContact = (NewContacts) => {
+    console.log("new ", NewContacts);
+    
     let hasContact = contacts.find((contact) => {
-      return NewContacts === contact.name;
+      console.log("3");
+
+      return NewContacts.name === contact.name;
     });
-    if (!hasContact) {
-      let temp = contacts.slice();
-      temp.push({
-        name: NewContacts,
-        lastMessage: "",
-        phone: "09034179326",
-        messages: [],
-      });
-      setContascts(temp);
-    } else {
-      LoadConversation(NewContacts);
+    let temp = [];
+    if (contacts.length !== 0) {
+      temp = contacts.slice();
+      console.log("eee");
     }
+
+    if (!hasContact) {
+      console.log("4");
+
+      temp.push(NewContacts);
+      contacts = temp.slice();
+      setContacts(contacts);
+      console.log("contact   ", contacts);
+
+      console.log("5");
+    }
+    console.log("contact   ", contacts);
+    console.log("temp   ", temp);
+    LoadConversation(NewContacts.name);
+    console.log("now   ", nowConversation);
   };
   //-------------------------------------------------------------------------------------------
   const changeComponent = (boolvalue) => {
@@ -104,6 +127,8 @@ const ChatRoom = () => {
   };
   //-------------------------------------------------------------------------------------------
   const LoadConversation = (name) => {
+    console.log("61");
+    console.log(name);
     ShowConversation();
     let nowConract;
     contacts.forEach((contact) => {
@@ -113,6 +138,7 @@ const ChatRoom = () => {
     });
     setNewConversation(nowConract);
   };
+
   //-------------------------------------------------------------------------------------------
   const ShowMenu = () => {
     menu.current.classList.remove("background");
@@ -131,7 +157,10 @@ const ChatRoom = () => {
     conv.current.classList.add("foregroundComponent");
     menu.current.classList.remove("foregroundComponent");
     menu.current.classList.add("background");
-    console.log(conv.current.classList);
+
+    se.current.classList.remove("foregroundComponent");
+    se.current.classList.remove("Chats");
+    se.current.classList.add("background");
   };
   //-------------------------------------------------------------------------------------------
   const ShowSearch = () => {
@@ -142,6 +171,7 @@ const ChatRoom = () => {
     menu.current.classList.add("no");
     se.current.classList.remove("no");
     se.current.classList.add("Chats");
+    se.current.classList.remove("background");
     se.current.classList.add("foregroundComponent");
   };
   //-------------------------------------------------------------------------------------------
@@ -150,17 +180,21 @@ const ChatRoom = () => {
       <div ref={se} className={"no"}>
         <Search change={ShowMenu} handleClick={AddContact} />
       </div>
-      <div className={"Chats background"} ref={menu}>
-        <Profile change={ShowSearch} />
+      <div className={"Chats foregroundComponent"} ref={menu}>
+        <Profile change={ShowSearch} name={name} username={username} />
         <ChatList contactInfo={contacts} handleClick={LoadConversation} />
       </div>
-      <div ref={conv} className="ConversactoinSec foregroundComponent">
-        <Conversation
-          conversationInfo={nowConversation}
-          userPhone={phone}
-          AddMessage={AddMessage}
-          ShowMenu={ShowMenu}
-        />
+      <div ref={conv} className="ConversactoinSec  background">
+        {contacts.length !== 0 ? (
+          <Conversation
+            conversationInfo={nowConversation}
+            messages={messages}
+            AddMessage={AddMessage}
+            ShowMenu={ShowMenu}
+          />
+        ) : (
+          false
+        )}
       </div>
     </div>
   );

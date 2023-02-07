@@ -5,6 +5,7 @@ import { AiOutlineIdcard } from "react-icons/ai";
 import { TiLockClosed, TiLockOpen } from "react-icons/ti";
 import { FaUserAlt } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 const Register = () => {
   const Navigate = useNavigate();
   const [name, setName] = useState("");
@@ -33,11 +34,17 @@ const Register = () => {
           password: password,
           name: name,
         }),
-      }).then((data) => {
-        if (data.status == 201) {
-          Navigate("/ChatRoom");
-        }
-      });
+      })
+        .then((data) => {
+          if (data.status == 201) {
+            Navigate("/ChatRoom");
+          }
+          return data.json();
+        })
+        .then((res) => {
+          // console.log(res.access_token);
+          Cookies.set("access_token", res.access_token);
+        });
     });
   };
   const IconClick = () => {

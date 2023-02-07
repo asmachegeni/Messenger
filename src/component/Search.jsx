@@ -6,44 +6,43 @@ import {
 } from "react-icons/ai";
 import ChatItem from "./ChatItem";
 import "./../style/Search.css";
-const Search = ({
-  contacts = [
-    "asma",
-    "acaa",
-    "ad",
-    "rezvan",
-    "اسما",
-    "t",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "h",
-    "g",
-    "i",
-    "j",
-    "k",
-  ],
-  change,
-  handleClick,
-}) => {
+import Cookies from "js-cookie";
+const Search = ({ change, handleClick }) => {
   const [content, setContent] = useState("");
-  const [contactSearch, setSearch] = useState([""]);
+  const [contactSearch, setSearch] = useState([]);
   const inp = useRef();
   const SearchContact = (input) => {
-    let temp = [];
-    let temp2 = [];
+    let token = Cookies.get("access_token");
     if (input) {
-      contacts.forEach((contact) => {
-        if (contact.slice(0, input.length) === input) {
-          temp.push(contact);
-          temp2 = [...new Set(temp)];
-        }
+      fetch("http://asmachegeni.ir/sanctum/csrf-cookie", {
+        headers: {
+          credentials: "same-origin",
+        },
+      }).then((response) => {
+        fetch(" http://asmachegeni.ir/api/user/search ", {
+          method: "POST",
+          headers: {
+            credentials: "same-origin",
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: "Bearer " + token,
+          },
+          body: JSON.stringify({
+            username: input,
+          }),
+        })
+          .then((data) => {
+            return data.json();
+          })
+          .then((response) => {
+            let temp = [];
+            for (const x in response.result) {
+              temp.push(response.result[x]);
+            }
+            setSearch(temp);
+            console.log(temp);
+          });
       });
-      setSearch(temp2);
-    } else {
-      setSearch([]);
     }
   };
   return (
@@ -54,7 +53,7 @@ const Search = ({
             className="CloseIcon"
             onClick={() => {
               setContent("");
-            SearchContact();
+              SearchContact([""]);
             }}
           />
         ) : (
@@ -72,14 +71,16 @@ const Search = ({
         />
         <AiOutlineArrowLeft className="BackIcon" onClick={change} />
       </div>
+
       {contactSearch.map((contactS) => {
         return contactS ? (
           <ChatItem
-            handleClick={handleClick}
-            ContactName={contactS}
-            lastMessage={""}
+            handleClick={() => {
+              handleClick(contactS);
+            }}
+            ContactName={contactS.name}
             nameClass={"nameSearch"}
-            key={contactS}
+            key={contactS.id}
           />
         ) : (
           ""
