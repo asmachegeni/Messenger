@@ -10,11 +10,12 @@ const ChatRoom = () => {
   const menu = useRef(null);
   const conv = useRef(null);
   const se = useRef(null);
-  const [id, setId] = useState(0);
+  let [id, setId] = useState(0);
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
   let [contacts, setContacts] = useState([]);
   let [nowConversation, setNewConversation] = useState(contacts[0]);
+  let [pusherr, setPusher] = useState({});
   useEffect(() => {
     let token = Cookies.get("access_token");
     fetch("http://asmachegeni.ir/sanctum/csrf-cookie", {
@@ -37,12 +38,24 @@ const ChatRoom = () => {
         .then((response) => {
           setUsername(response.username);
           setName(response.name);
-          setId(response.id);
+          id = response.id;
+          setId(id);
+          console.log("res ",response.id);
         });
     });
+
+    var pusher = new Pusher("d606819a439ddf1201dc", {
+      cluster: "ap2",
+    });
+    pusherr = pusher;
+    setPusher(pusherr);
+    console.log("id",id);
+    console.log("here");
   }, []);
   useEffect(() => {
-    if (!id) {
+    if (id !== 0) {
+      console.log("f ",id);
+
       let token = Cookies.get("access_token");
       fetch("http://asmachegeni.ir/sanctum/csrf-cookie", {
         headers: {
@@ -67,53 +80,57 @@ const ChatRoom = () => {
             setId(response.id);
           });
       });
-    }
 
-    Pusher.logToConsole = true;
+      Pusher.logToConsole = true;
 
-    var pusher = new Pusher("d606819a439ddf1201dc", {
-      cluster: "ap2",
-    });
+      // var pusher = new Pusher("d606819a439ddf1201dc", {
+      //   cluster: "ap2",
+      // });
 
-    var channel = pusher.subscribe(`chat${id}`);
-    channel.bind("App\\Events\\MessagePosted", function (data) {
-      console.log("messge", data);
+      var channel = pusherr.subscribe(`chat${id}`);
+      channel.bind(
+        "App\\Events\\MessagePosted",
+        function (data) {
+          console.log("messge", data);
 
-      let msg = {
-        content: data.message.content,
-        receiver_id: data.message.receiver_id,
-        sender_id: data.message.sender_id,
-        updated_at: data.message.updated_at,
-        created_at: data.message.created_at,
-        position: data.message.position,
-      };
-      let hasContact = contacts.find((contact) => {
-        return data.message.sender.id === contact.id;
-      });
-      if (!hasContact) {
-        let tempContact = data.message.sender;
-        tempContact.messages = [];
+          let msg = {
+            content: data.message.content,
+            receiver_id: data.message.receiver_id,
+            sender_id: data.message.sender_id,
+            updated_at: data.message.updated_at,
+            created_at: data.message.created_at,
+            position: data.message.position,
+          };
+          let hasContact = contacts.find((contact) => {
+            return data.message.sender.id === contact.id;
+          });
+          if (!hasContact) {
+            let tempContact = data.message.sender;
+            tempContact.messages = [];
 
-        tempContact.messages.push(msg);
-        AddContact(tempContact);
-      } else {
-        let temp = contacts.slice();
-        temp.forEach((contact) => {
-          if (nowConversation.id === contact.id) {
-            if (contact.messages) {
-              contact.messages.push(msg);
-            } else {
-              contact.messages = [];
-              contact.messages.push(msg);
-            }
-            nowConversation = contact;
+            tempContact.messages.push(msg);
+            AddContact(tempContact);
+          } else {
+            let temp = contacts.slice();
+            temp.forEach((contact) => {
+              if (nowConversation.id === contact.id) {
+                if (contact.messages) {
+                  contact.messages.push(msg);
+                } else {
+                  contact.messages = [];
+                  contact.messages.push(msg);
+                }
+                nowConversation = contact;
+              }
+            });
+            contacts = temp;
+            setNewConversation(nowConversation);
+            setContacts(contacts);
           }
-        });
-        contacts = temp;
-        setNewConversation(nowConversation);
-        setContacts(contacts);
-      }
-    });
+        },
+        channel.unbind()
+      );
+    }
   });
   //-------------------------------------------------------------------------------------------
   const AddMessage = (message) => {
