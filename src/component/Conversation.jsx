@@ -4,9 +4,7 @@ import Message from "./Message";
 import "./../style/Conversation.css";
 import { FaTelegramPlane } from "react-icons/fa";
 const Conversation = ({
-  conversationInfo = {
-    name: "",
-  },
+  conversationInfo,
   messages,
   AddMessage,
   ShowMenu,
@@ -21,16 +19,18 @@ const Conversation = ({
     <div className="ConversationContainer">
       <Title name={conversationInfo.name} ShowMenu={ShowMenu} />
       <div className="contentConversation" ref={mg}>
-        {messages.map((message, index) => {
-          return (
-            <Message
-              text={message.text}
-              date={message.date}
-              senderPhone={message.senderPhone}
-              key={index}
-            />
-          );
-        })}
+        {messages
+          ? messages.map((message, index) => {
+              return (
+                <Message
+                  text={message.content}
+                  date={message.create_at}
+                  position={message.position}
+                  key={index}
+                />
+              );
+            })
+          : false}
       </div>
       <div className="cont">
         <textarea
@@ -44,7 +44,7 @@ const Conversation = ({
         ></textarea>
         <FaTelegramPlane
           onClick={() => {
-            AddMessage(messages, v);
+            AddMessage(v);
             setValue("");
           }}
           className="btn"

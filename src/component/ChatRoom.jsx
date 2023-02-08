@@ -11,14 +11,10 @@ const ChatRoom = () => {
   const conv = useRef(null);
   const se = useRef(null);
   const [id, setId] = useState(0);
-  const [isMoblie, setIsMoblie] = useState(false);
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
-  const [showSearch, setShowSearch] = useState(false);
-  const [isForground, setIsForground] = useState(true);
   let [contacts, setContacts] = useState([]);
-  const [nowConversation, setNewConversation] = useState(contacts[0]);
-  const [messages, setMessages] = useState([]);
+  let [nowConversation, setNewConversation] = useState(contacts[0]);
   useEffect(() => {
     let token = Cookies.get("access_token");
     fetch("http://asmachegeni.ir/sanctum/csrf-cookie", {
@@ -44,21 +40,83 @@ const ChatRoom = () => {
           setId(response.id);
         });
     });
-    console.log("id", id);
+  }, []);
+  useEffect(() => {
+    if (!id) {
+      let token = Cookies.get("access_token");
+      fetch("http://asmachegeni.ir/sanctum/csrf-cookie", {
+        headers: {
+          credentials: "same-origin",
+        },
+      }).then((response) => {
+        fetch("http://asmachegeni.ir/api/user", {
+          method: "GET",
+          headers: {
+            credentials: "same-origin",
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: "Bearer " + token,
+          },
+        })
+          .then((data) => {
+            return data.json();
+          })
+          .then((response) => {
+            setUsername(response.username);
+            setName(response.name);
+            setId(response.id);
+          });
+      });
+    }
+
     Pusher.logToConsole = true;
 
     var pusher = new Pusher("d606819a439ddf1201dc", {
       cluster: "ap2",
     });
 
-    var channel = pusher.subscribe("chat25");
+    var channel = pusher.subscribe(`chat${id}`);
     channel.bind("App\\Events\\MessagePosted", function (data) {
-      console.log("aaaaaa");
-      console.log(data.message);
+      console.log("messge", data);
+
+      let msg = {
+        content: data.message.content,
+        receiver_id: data.message.receiver_id,
+        sender_id: data.message.sender_id,
+        updated_at: data.message.updated_at,
+        created_at: data.message.created_at,
+        position: data.message.position,
+      };
+      let hasContact = contacts.find((contact) => {
+        return data.message.sender.id === contact.id;
+      });
+      if (!hasContact) {
+        let tempContact = data.message.sender;
+        tempContact.messages = [];
+
+        tempContact.messages.push(msg);
+        AddContact(tempContact);
+      } else {
+        let temp = contacts.slice();
+        temp.forEach((contact) => {
+          if (nowConversation.id === contact.id) {
+            if (contact.messages) {
+              contact.messages.push(msg);
+            } else {
+              contact.messages = [];
+              contact.messages.push(msg);
+            }
+            nowConversation = contact;
+          }
+        });
+        contacts = temp;
+        setNewConversation(nowConversation);
+        setContacts(contacts);
+      }
     });
-  }, []);
+  });
   //-------------------------------------------------------------------------------------------
-  const AddMessage = (oldMessages, message) => {
+  const AddMessage = (message) => {
     let token = Cookies.get("access_token");
     if (message) {
       fetch("http://asmachegeni.ir/sanctum/csrf-cookie", {
@@ -76,7 +134,7 @@ const ChatRoom = () => {
           },
           body: JSON.stringify({
             content: message,
-            receiver_id: id,
+            receiver_id: nowConversation.id,
           }),
         })
           .then((data) => {
@@ -84,59 +142,57 @@ const ChatRoom = () => {
             }
             return data.json();
           })
-          .then((res) => {});
+          .then((res) => {
+            console.log(res);
+            let temp = contacts.slice();
+            temp.forEach((contact) => {
+              if (nowConversation.id === contact.id) {
+                if (contact.messages) {
+                  let msg = res.message;
+                  msg.position = "right";
+                  contact.messages.push(msg);
+                  console.log("1 ", contact.messages);
+                } else {
+                  let msg = res.message;
+                  msg.position = "right";
+                  contact.messages = [];
+                  contact.messages.push(msg);
+                  console.log("2 ", contact.messages);
+                }
+                nowConversation = contact;
+              }
+            });
+            contacts = temp;
+            setNewConversation(nowConversation);
+            setContacts(contacts);
+            console.log("c ", contacts);
+            console.log("now ", nowConversation);
+          });
       });
     }
   };
   //-------------------------------------------------------------------------------------------
   const AddContact = (NewContacts) => {
-    console.log("new ", NewContacts);
-    
     let hasContact = contacts.find((contact) => {
-      console.log("3");
-
-      return NewContacts.name === contact.name;
+      return NewContacts.username === contact.username;
     });
     let temp = [];
     if (contacts.length !== 0) {
       temp = contacts.slice();
-      console.log("eee");
     }
-
     if (!hasContact) {
-      console.log("4");
-
       temp.push(NewContacts);
       contacts = temp.slice();
       setContacts(contacts);
-      console.log("contact   ", contacts);
-
-      console.log("5");
     }
-    console.log("contact   ", contacts);
-    console.log("temp   ", temp);
-    LoadConversation(NewContacts.name);
-    console.log("now   ", nowConversation);
+    nowConversation = NewContacts;
+    setNewConversation(nowConversation);
   };
   //-------------------------------------------------------------------------------------------
-  const changeComponent = (boolvalue) => {
-    setShowSearch(boolvalue);
-    if (!showSearch) {
-      setIsMoblie(true);
-    }
-  };
-  //-------------------------------------------------------------------------------------------
-  const LoadConversation = (name) => {
-    console.log("61");
-    console.log(name);
+  const LoadConversation = (NewContacts) => {
     ShowConversation();
-    let nowConract;
-    contacts.forEach((contact) => {
-      if (contact.name === name) {
-        nowConract = contact;
-      }
-    });
-    setNewConversation(nowConract);
+    nowConversation = NewContacts;
+    setNewConversation(nowConversation);
   };
 
   //-------------------------------------------------------------------------------------------
@@ -155,7 +211,7 @@ const ChatRoom = () => {
   const ShowConversation = () => {
     conv.current.classList.remove("background");
     conv.current.classList.add("foregroundComponent");
-    menu.current.classList.remove("foregroundComponent");
+    // menu.current.classList.remove("foregroundComponent");
     menu.current.classList.add("background");
 
     se.current.classList.remove("foregroundComponent");
@@ -188,7 +244,7 @@ const ChatRoom = () => {
         {contacts.length !== 0 ? (
           <Conversation
             conversationInfo={nowConversation}
-            messages={messages}
+            messages={nowConversation.messages}
             AddMessage={AddMessage}
             ShowMenu={ShowMenu}
           />

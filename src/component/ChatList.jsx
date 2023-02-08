@@ -7,9 +7,8 @@ const ChatList = ({ contactInfo, handleClick }) => {
       {contactInfo.map((contact) => (
         <ChatItem
           ContactName={contact.name}
-          lastMessage={contact.lastMessage}
-          handleClick={handleClick}
-          key={contact.name}
+          handleClick={()=>{handleClick(contact)}}
+          key={contact.id}
         />
       ))}
     </div>
