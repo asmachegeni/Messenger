@@ -43,7 +43,7 @@ const ChatRoom = () => {
           setName(response.name);
           id = response.id;
           setId(id);
-          console.log("res ", response.id);
+          // console.log("res ", response.id);
         });
     });
 
@@ -52,12 +52,12 @@ const ChatRoom = () => {
     });
     pusherr = pusher;
     setPusher(pusherr);
-    console.log("id", id);
-    console.log("here");
+    // console.log("id", id);
+    // console.log("here");
   }, []);
   useEffect(() => {
     if (id !== 0) {
-      console.log("f ", id);
+      // console.log("f ", id);
 
       let token = Cookies.get("access_token");
       fetch("http://asmachegeni.ir/sanctum/csrf-cookie", {
@@ -84,12 +84,12 @@ const ChatRoom = () => {
           });
       });
 
-      Pusher.logToConsole = true;
+      Pusher.logToConsole = false;
       var channel = pusherr.subscribe(`chat${id}`);
       channel.bind(
         "App\\Events\\MessagePosted",
         function (data) {
-          console.log("messge", data);
+          // console.log("messge", data);
 
           let msg = {
             content: data.message.content,
@@ -174,13 +174,13 @@ const ChatRoom = () => {
                   let msg = res.message;
                   msg.position = "right";
                   contact.messages.push(msg);
-                  console.log("1 ", contact.messages);
+                  // console.log("1 ", contact.messages);
                 } else {
                   let msg = res.message;
                   msg.position = "right";
                   contact.messages = [];
                   contact.messages.push(msg);
-                  console.log("2 ", contact.messages);
+                  // console.log("2 ", contact.messages);
                 }
                 nowConversation = contact;
               }
@@ -188,8 +188,8 @@ const ChatRoom = () => {
             contacts = temp;
             setNewConversation(nowConversation);
             setContacts(contacts);
-            console.log("c ", contacts);
-            console.log("now ", nowConversation);
+            // console.log("c ", contacts);
+            // console.log("now ", nowConversation);
           });
       });
     }

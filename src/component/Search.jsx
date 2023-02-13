@@ -40,7 +40,7 @@ const Search = ({ change, handleClick }) => {
               temp.push(response.result[x]);
             }
             setSearch(temp);
-            console.log(temp);
+            // console.log(temp);
           });
       });
     }

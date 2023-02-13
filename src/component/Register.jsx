@@ -15,6 +15,7 @@ const Register = () => {
   const [showPassError, setShowPassError] = useState(false);
   const [showusernameError, setShowusernameError] = useState(false);
   const [shownameError, setShownameError] = useState(false);
+  const [textError, setError] = useState("");
   const handleRegisterForm = (e) => {
     e.preventDefault();
     fetch("http://asmachegeni.ir/sanctum/csrf-cookie", {
@@ -42,7 +43,19 @@ const Register = () => {
           return data.json();
         })
         .then((res) => {
-          // console.log(res.access_token);
+          if (res.message != undefined) {
+            setName("");
+            setPassword("");
+            setUsername("");
+            if (res.message.includes("already")) {
+              setError("نام کاربری از قبل وجود دارد");
+              setShowusernameError(true);
+            } else if (res.message.includes("username")) {
+              setError("نام کاربری حداقل باید سه کاراکتر باشد");
+              setShowusernameError(true);
+              setShowusernameError(true);
+            }
+          }
           Cookies.set("access_token", res.access_token);
         });
     });
@@ -87,9 +100,7 @@ const Register = () => {
             />
             <AiOutlineIdcard className="inputIcon" />
           </div>
-          {showusernameError && (
-            <span className="error">نام کاربری اشتباه است</span>
-          )}
+          {showusernameError && <span className="error">{textError}</span>}
           <div className="field">
             <input
               type={showPassword ? "text" : "password"}

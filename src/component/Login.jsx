@@ -39,7 +39,12 @@ const Login = () => {
           return data.json();
         })
         .then((res) => {
-          // console.log(res.access_token);
+          // console.log(res.message);
+          if (res.message != undefined) {
+            setShowPassError(true);
+            setPassword("");
+            setUsername("");
+          }
           Cookies.set("access_token", res.access_token);
         });
     });
@@ -85,7 +90,7 @@ const Login = () => {
             )}
           </div>
           {showPassError && (
-            <span className="error">رمز وارد شده نادرست است</span>
+            <span className="error">کاربری با این مشخصات وجود ندارد</span>
           )}
           {/* <input type="submit" value="ورود" onClick={handleForm} id="submit" /> */}
           <button onClick={handleForm} id="submit">

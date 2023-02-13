@@ -36,6 +36,14 @@ const Conversation = ({ conversationInfo, messages, AddMessage, ShowMenu }) => {
           }}
           ref={textref}
           value={v}
+          onKeyUp={(e) => {
+            if (e.key == "Enter") {
+              // if(e.)
+              // console.log("e");
+              AddMessage(v);
+              setValue("");
+            }
+          }}
         ></textarea>
 
         <FaTelegramPlane
