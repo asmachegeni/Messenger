@@ -15,15 +15,16 @@
   width: 70vw;
   z-index: 10;
   bottom: -7px;
+  background-color: #e3edee;
 }
 .textbox {
   padding-top: 12px;
   border: none;
-  width: 68vw;
-  height: 48px;
+  width: 60vw;
+  height: 40px;
   background-color: #e3edee;
   font-family: "Vazir-Regular";
-  font-size: 16px;
+  font-size: 12px;
   text-align: right;
   border: none;
   outline: none;
@@ -35,15 +36,16 @@
   align-self: center;
   white-space: pre-wrap;
   overflow: hidden;
+  border-radius: 10px 0 0 0;
 }
 .btn {
-  font-size: 24px;
+  font-size:14px;
   color: #20334d;
   width: 36px;
-  height: 52px;
+  height: 36px;
   background-color: #e3edee;
   padding-left: 8px;
-  padding-right: 8px;
+  
 }
 .contentConversation {
   display: flex;

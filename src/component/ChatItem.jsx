@@ -3,7 +3,7 @@ import "./../style/ChatItem.css";
 import image from "./../assets/user.png";
 const ChatItem = ({
   ContactName,
-  lastMessage,
+  isNotif,
   nameClass = "name",
   handleClick,
 }) => {
@@ -18,7 +18,7 @@ const ChatItem = ({
         <img className="imgContact" src={image} />
         <div className="Chattexts">
           <span id={nameClass}>{ContactName}</span>
-          <span id="message">{lastMessage}</span>
+          {isNotif?<span id="notif"></span>:""}
         </div>
       </div>
     </div>

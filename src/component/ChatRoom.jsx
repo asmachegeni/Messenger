@@ -6,6 +6,7 @@ import ChatList from "./ChatList";
 import Search from "./Search";
 import Cookies from "js-cookie";
 import Pusher from "pusher-js";
+import song from "./../assets/Note.mp3";
 const ChatRoom = () => {
   const menu = useRef(null);
   const conv = useRef(null);
@@ -16,6 +17,8 @@ const ChatRoom = () => {
   let [contacts, setContacts] = useState([]);
   let [nowConversation, setNewConversation] = useState(contacts[0]);
   let [pusherr, setPusher] = useState({});
+  const audio = new Audio(song);
+  audio.loop = true;
   useEffect(() => {
     let token = Cookies.get("access_token");
     fetch("http://asmachegeni.ir/sanctum/csrf-cookie", {
@@ -40,7 +43,7 @@ const ChatRoom = () => {
           setName(response.name);
           id = response.id;
           setId(id);
-          console.log("res ",response.id);
+          console.log("res ", response.id);
         });
     });
 
@@ -49,12 +52,12 @@ const ChatRoom = () => {
     });
     pusherr = pusher;
     setPusher(pusherr);
-    console.log("id",id);
+    console.log("id", id);
     console.log("here");
   }, []);
   useEffect(() => {
     if (id !== 0) {
-      console.log("f ",id);
+      console.log("f ", id);
 
       let token = Cookies.get("access_token");
       fetch("http://asmachegeni.ir/sanctum/csrf-cookie", {
@@ -82,11 +85,6 @@ const ChatRoom = () => {
       });
 
       Pusher.logToConsole = true;
-
-      // var pusher = new Pusher("d606819a439ddf1201dc", {
-      //   cluster: "ap2",
-      // });
-
       var channel = pusherr.subscribe(`chat${id}`);
       channel.bind(
         "App\\Events\\MessagePosted",
@@ -107,18 +105,26 @@ const ChatRoom = () => {
           if (!hasContact) {
             let tempContact = data.message.sender;
             tempContact.messages = [];
-
+            tempContact.isNotif = true;
+            // audio.play();
+            playMusic();
             tempContact.messages.push(msg);
             AddContact(tempContact);
           } else {
             let temp = contacts.slice();
             temp.forEach((contact) => {
-              if (nowConversation.id === contact.id) {
+              if (data.message.sender_id === contact.id) {
                 if (contact.messages) {
                   contact.messages.push(msg);
+                  contact.isNotif = true;
+                  // audio.play();
+                  playMusic();
                 } else {
                   contact.messages = [];
                   contact.messages.push(msg);
+                  contact.isNotif = true;
+                  // audio.play();
+                  playMusic();
                 }
                 nowConversation = contact;
               }
@@ -209,6 +215,14 @@ const ChatRoom = () => {
   const LoadConversation = (NewContacts) => {
     ShowConversation();
     nowConversation = NewContacts;
+    let temp = contacts.slice();
+    temp.forEach((contact) => {
+      if ((contact.username = NewContacts.username)) {
+        contact.isNotif = false;
+      }
+    });
+    contacts = temp;
+    setContacts(contacts);
     setNewConversation(nowConversation);
   };
 
@@ -248,6 +262,10 @@ const ChatRoom = () => {
     se.current.classList.add("foregroundComponent");
   };
   //-------------------------------------------------------------------------------------------
+  const playMusic = () => {
+    audio.loop = false;
+    audio.play();
+  };
   return (
     <div className="ChatRoom">
       <div ref={se} className={"no"}>

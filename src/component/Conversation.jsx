@@ -3,12 +3,7 @@ import Title from "./Title";
 import Message from "./Message";
 import "./../style/Conversation.css";
 import { FaTelegramPlane } from "react-icons/fa";
-const Conversation = ({
-  conversationInfo,
-  messages,
-  AddMessage,
-  ShowMenu,
-}) => {
+const Conversation = ({ conversationInfo, messages, AddMessage, ShowMenu }) => {
   const [v, setValue] = useState("");
   const textref = useRef();
   const mg = useRef();
@@ -42,6 +37,7 @@ const Conversation = ({
           ref={textref}
           value={v}
         ></textarea>
+
         <FaTelegramPlane
           onClick={() => {
             AddMessage(v);

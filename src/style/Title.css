@@ -1,6 +1,6 @@
 .titleContainer {
   width: 70vw;
-  height: 76px;
+  height: 64px;
   background-color: #20334d;
   display: flex;
   flex-direction: row;
@@ -19,14 +19,14 @@
   padding-left: 16px;
 }
 .profile {
-  width: 54px;
-  height: 54px;
+  width: 48px;
+  height: 48px;
   border-radius: 30px;
   margin-right: 32px;
 }
 .nameC {
   color: #fff;
-  font-size: 20px;
+  font-size: 16px;
   font-family: "Vazir-Regular";
 }
 .backIcon {

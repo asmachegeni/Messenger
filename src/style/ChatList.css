@@ -6,7 +6,7 @@
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  background-image: linear-gradient(#dae1e9, #f9e8ee);
+  background-image: linear-gradient(#D9E1E4, #FCE9ED);
   border-radius: 32px 32px 0px 0px;
   overflow: auto;
   overflow-x: hidden;

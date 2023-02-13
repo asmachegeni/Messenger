@@ -81,6 +81,7 @@ const Search = ({ change, handleClick }) => {
             ContactName={contactS.name}
             nameClass={"nameSearch"}
             key={contactS.id}
+            isNotif={false}
           />
         ) : (
           ""
