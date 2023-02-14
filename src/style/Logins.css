@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  user-select: none;
 }
 .container2,
 .container3 {
@@ -69,6 +70,10 @@ input[type="password"] {
   font-family: "Vazir-Regular";
   text-align: right;
   direction: rtl;
+  user-select: text;
+}
+input:focus {
+  background-color: #dfe0e3;
 }
 #submit {
   width: 290px;
@@ -109,4 +114,23 @@ input[type="password"] {
   font-size: 14px;
   color: #fb0100;
   font-family: "Vazir-Regular";
+}
+@media screen and (max-width: 480px) {
+  .container2,
+  .container3 {
+    width: 320px;
+  }
+  .container2 {
+    height: 80vh;
+  }
+  .container3 {
+    height: 80vh;
+  }
+  #link {
+    width: 320px;
+    height: 48px;
+  }
+  .field {
+    width: 280px;
+  }
 }

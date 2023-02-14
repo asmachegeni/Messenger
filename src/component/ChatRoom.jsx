@@ -7,6 +7,7 @@ import Search from "./Search";
 import Cookies from "js-cookie";
 import Pusher from "pusher-js";
 import song from "./../assets/Note.mp3";
+import click from "./../assets/send.mp3";
 const ChatRoom = () => {
   const menu = useRef(null);
   const conv = useRef(null);
@@ -18,6 +19,7 @@ const ChatRoom = () => {
   let [nowConversation, setNewConversation] = useState(contacts[0]);
   let [pusherr, setPusher] = useState({});
   const audio = new Audio(song);
+  const sound = new Audio(click);
   audio.loop = true;
   useEffect(() => {
     let token = Cookies.get("access_token");
@@ -193,9 +195,11 @@ const ChatRoom = () => {
           });
       });
     }
+    playSound();
   };
   //-------------------------------------------------------------------------------------------
   const AddContact = (NewContacts) => {
+    ShowMenu();
     let hasContact = contacts.find((contact) => {
       return NewContacts.username === contact.username;
     });
@@ -266,6 +270,14 @@ const ChatRoom = () => {
     audio.loop = false;
     audio.play();
   };
+  //-------------------------------------------------------------------------------------------
+
+  const playSound = () => {
+    sound.loop = false;
+    sound.play();
+  };
+  //-------------------------------------------------------------------------------------------
+
   return (
     <div className="ChatRoom">
       <div ref={se} className={"no"}>

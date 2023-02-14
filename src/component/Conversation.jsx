@@ -2,7 +2,8 @@ import React, { useRef, useState, useEffect } from "react";
 import Title from "./Title";
 import Message from "./Message";
 import "./../style/Conversation.css";
-import { FaTelegramPlane } from "react-icons/fa";
+import { BiSend } from "react-icons/bi";
+import { IoMdSend, IoIosSend } from "react-icons/io";
 const Conversation = ({ conversationInfo, messages, AddMessage, ShowMenu }) => {
   const [v, setValue] = useState("");
   const textref = useRef();
@@ -29,8 +30,8 @@ const Conversation = ({ conversationInfo, messages, AddMessage, ShowMenu }) => {
           : false}
       </div>
       <div className="cont">
-        <textarea
-          placeholder=".... نوشتن پیام"
+        <input
+          placeholder=" نوشتن پیام"
           className="textbox"
           onChange={(e) => {
             setValue(e.target.value);
@@ -45,9 +46,16 @@ const Conversation = ({ conversationInfo, messages, AddMessage, ShowMenu }) => {
               setValue("");
             }
           }}
-        ></textarea>
+        />
 
-        <FaTelegramPlane
+        {/* <BiSend
+          onClick={() => {
+            AddMessage(v);
+            setValue("");
+          }}
+          className="btn"
+        /> */}
+        <IoMdSend
           onClick={() => {
             AddMessage(v);
             setValue("");

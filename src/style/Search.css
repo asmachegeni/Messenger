@@ -5,12 +5,21 @@
   background-color: #1d334d;
   width: 30vw;
   height: 100vh;
+  
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .Searchbar {
+  width: 30vw;
+  background-color: #1d334d;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
   justify-content: space-evenly;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  padding-top: 16px;
 }
 .BackIcon,
 .CloseIcon,
@@ -31,11 +40,17 @@
   text-align: right;
   direction: rtl;
 }
+.SearchInput:focus {
+  background-color: #1d334d;
+}
 .SearchInput::placeholder {
   color: #fff;
 }
 @media screen and (max-width: 992px) {
   .SearchContainer {
+    width: 100vw;
+  }
+  .Searchbar {
     width: 100vw;
   }
 }

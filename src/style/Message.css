@@ -1,5 +1,5 @@
 .messageContainerUser {
-  background-color: #E0D5FF;
+  background-color: #e0d5ff;
   border-radius: 16px 16px 0 16px;
   margin-bottom: 12px;
   height: min-content;
@@ -9,6 +9,7 @@
   white-space: pre-wrap;
   align-self: flex-end;
   margin-right: 24px;
+  direction: rtl;
 }
 .textUser {
   padding-left: 8px;
@@ -27,7 +28,7 @@
   font-family: "Vazir-Regular";
 }
 .messageContainerClient {
-  background-color: #EBEBEB;
+  background-color: #ebebeb;
   border-radius: 0 16px 16px 16px;
   height: min-content;
   max-width: 55vw;
@@ -37,6 +38,7 @@
   margin-bottom: 12px;
   white-space: pre-wrap;
   margin-left: 24px;
+  direction: rtl;
 }
 .textClient {
   padding-left: 8px;
