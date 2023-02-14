@@ -21,12 +21,12 @@ const ChatRoom = () => {
   audio.loop = true;
   useEffect(() => {
     let token = Cookies.get("access_token");
-    fetch("http://asmachegeni.ir/sanctum/csrf-cookie", {
+    fetch("https://asmachegeni.ir/sanctum/csrf-cookie", {
       headers: {
         credentials: "same-origin",
       },
     }).then((response) => {
-      fetch("http://asmachegeni.ir/api/user", {
+      fetch("https://asmachegeni.ir/api/user", {
         method: "GET",
         headers: {
           credentials: "same-origin",
@@ -60,12 +60,12 @@ const ChatRoom = () => {
       // console.log("f ", id);
 
       let token = Cookies.get("access_token");
-      fetch("http://asmachegeni.ir/sanctum/csrf-cookie", {
+      fetch("https://asmachegeni.ir/sanctum/csrf-cookie", {
         headers: {
           credentials: "same-origin",
         },
       }).then((response) => {
-        fetch("http://asmachegeni.ir/api/user", {
+        fetch("https://asmachegeni.ir/api/user", {
           method: "GET",
           headers: {
             credentials: "same-origin",
@@ -142,12 +142,12 @@ const ChatRoom = () => {
   const AddMessage = (message) => {
     let token = Cookies.get("access_token");
     if (message) {
-      fetch("http://asmachegeni.ir/sanctum/csrf-cookie", {
+      fetch("https://asmachegeni.ir/sanctum/csrf-cookie", {
         headers: {
           credentials: "same-origin",
         },
       }).then((response) => {
-        fetch("http://asmachegeni.ir/api/send_message", {
+        fetch("https://asmachegeni.ir/api/send_message", {
           method: "POST",
           headers: {
             credentials: "same-origin",

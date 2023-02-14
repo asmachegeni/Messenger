@@ -15,12 +15,12 @@ const Login = () => {
   const [showusernameError, setShowusernameError] = useState(false);
   const handleForm = (e) => {
     e.preventDefault();
-    fetch("http://asmachegeni.ir/sanctum/csrf-cookie", {
+    fetch("https://asmachegeni.ir/sanctum/csrf-cookie", {
       headers: {
         credentials: "same-origin",
       },
     }).then((response) => {
-      fetch("http://asmachegeni.ir/api/login", {
+      fetch("https://asmachegeni.ir/api/login", {
         method: "POST",
         headers: {
           credentials: "same-origin",

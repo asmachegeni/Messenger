@@ -14,12 +14,12 @@ const Search = ({ change, handleClick }) => {
   const SearchContact = (input) => {
     let token = Cookies.get("access_token");
     if (input) {
-      fetch("http://asmachegeni.ir/sanctum/csrf-cookie", {
+      fetch("https://asmachegeni.ir/sanctum/csrf-cookie", {
         headers: {
           credentials: "same-origin",
         },
       }).then((response) => {
-        fetch(" http://asmachegeni.ir/api/user/search ", {
+        fetch(" https://asmachegeni.ir/api/user/search ", {
           method: "POST",
           headers: {
             credentials: "same-origin",
@@ -60,7 +60,7 @@ const Search = ({ change, handleClick }) => {
           <AiOutlineSearch className="SearchIcon" />
         )}
         <input
-          placeholder=" ....جستجو  "
+          placeholder="جستجو  "
           className="SearchInput"
           onChange={(e) => {
             setContent(e.target.value);

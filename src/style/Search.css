@@ -17,6 +17,7 @@
 .SearchIcon {
   font-size: 20px;
   color: #ffff;
+  cursor: pointer;
 }
 .SearchInput {
   height: 48px;
@@ -28,6 +29,7 @@
   background-color: #1d334d;
   border: none;
   text-align: right;
+  direction: rtl;
 }
 .SearchInput::placeholder {
   color: #fff;

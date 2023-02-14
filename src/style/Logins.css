@@ -6,6 +6,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 .container2,
 .container3 {
@@ -66,6 +67,8 @@ input[type="password"] {
   outline: none;
   padding-right: 8px;
   font-family: "Vazir-Regular";
+  text-align: right;
+  direction: rtl;
 }
 #submit {
   width: 290px;
@@ -77,6 +80,7 @@ input[type="password"] {
   font-size: 18px;
   margin-top: 16px;
   font-family: "Vazir-Regular";
+  cursor: pointer;
 }
 #link {
   width: 360px;
@@ -89,6 +93,7 @@ input[type="password"] {
   text-decoration: none;
   text-align: center;
   padding-top: 12px;
+  cursor: pointer;
 }
 .title {
   font-size: 36px;

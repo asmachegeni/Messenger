@@ -18,12 +18,12 @@ const Register = () => {
   const [textError, setError] = useState("");
   const handleRegisterForm = (e) => {
     e.preventDefault();
-    fetch("http://asmachegeni.ir/sanctum/csrf-cookie", {
+    fetch("https://asmachegeni.ir/sanctum/csrf-cookie", {
       headers: {
         credentials: "same-origin",
       },
     }).then((response) => {
-      fetch("http://asmachegeni.ir/api/register", {
+      fetch("https://asmachegeni.ir/api/register", {
         method: "POST",
         headers: {
           credentials: "same-origin",
