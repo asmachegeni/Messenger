@@ -1,17 +1,21 @@
 .ChatListContainer {
-  position: relative;
+  position: fixed;
   top: 140px;
   width: 30vw;
   height: 85vh;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  background-image: linear-gradient(#D9E1E4, #FCE9ED);
+  background-image: linear-gradient(#d9e1e4, #fce9ed);
   border-radius: 32px 32px 0px 0px;
-  overflow: auto;
-  overflow-x: hidden;
-  position: fixed;
+  overflow: hidden;
   z-index: 10;
+}
+.ChatListContainer1 {
+  height: 83vh;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 @media screen and (max-width: 992px) {
   .ChatListContainer {

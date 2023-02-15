@@ -39,17 +39,18 @@
   overflow: hidden;
   border-radius: 10px 0 0 0;
   direction: rtl;
-
+}
+.textbox:focus {
+  background-color: #e3edee;
 }
 .btn {
-  font-size:18px;
-  color: #39394F;
+  font-size: 18px;
+  color: #39394f;
   width: 28px;
   height: 28px;
   background-color: #e3edee;
   padding-left: 8px;
- 
-  
+  padding-right: 12px;
 }
 .contentConversation {
   display: flex;

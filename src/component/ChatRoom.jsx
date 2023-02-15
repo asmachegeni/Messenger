@@ -163,12 +163,13 @@ const ChatRoom = () => {
           }),
         })
           .then((data) => {
-            if (data.status == 200) {
+            if (data.status == 201) {
+              playSound();
             }
             return data.json();
           })
           .then((res) => {
-            console.log(res);
+            // console.log(res);
             let temp = contacts.slice();
             temp.forEach((contact) => {
               if (nowConversation.id === contact.id) {
@@ -195,7 +196,6 @@ const ChatRoom = () => {
           });
       });
     }
-    playSound();
   };
   //-------------------------------------------------------------------------------------------
   const AddContact = (NewContacts) => {

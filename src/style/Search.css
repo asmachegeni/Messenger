@@ -4,8 +4,7 @@
   align-items: center;
   background-color: #1d334d;
   width: 30vw;
-  height: 100vh;
-  
+  height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -20,6 +19,7 @@
   top: 0;
   z-index: 1000;
   padding-top: 16px;
+  padding-bottom: 16px;
 }
 .BackIcon,
 .CloseIcon,
@@ -29,7 +29,7 @@
   cursor: pointer;
 }
 .SearchInput {
-  height: 48px;
+  height: fit-content;
   width: 20vw;
   outline: none;
   color: #fff;

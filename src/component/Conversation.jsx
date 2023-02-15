@@ -10,7 +10,7 @@ const Conversation = ({ conversationInfo, messages, AddMessage, ShowMenu }) => {
   const mg = useRef();
   useEffect(() => {
     mg.current.scrollTo(0, mg.current.scrollHeight);
-    console.log("c");
+    // console.log("c");
   });
   return (
     <div className="ConversationContainer">
